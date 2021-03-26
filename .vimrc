@@ -1,5 +1,6 @@
 "
 " ## CHEAT SHEET
+" bd/bo <num> - delete or open buffer num
 " gd - go to definition of variable or function
 " \f - go to nerd tree  s - open file in split mode
 " <ctrl+w>o - maximize/minimize windows
@@ -8,7 +9,10 @@
 " \g - show diagnostics pane
 " q<letter> start record.  q again. stop.  @<letter> replay recording
 " .  - redo last motion
-"
+" :mksession! ~/.vim/dev.vim  - creates session to restore
+" :wviminfo! ~/.vim/dev.viminfo - create vim info (its differen than session.)
+" :source dev.vim  or vim -S dev.vim to load session
+" :rviminfo! ~/.vim/dev.viminfo - loads the viminfo
 syntax on
 set timeoutlen=500 " Set timeout length to 500 ms
 
@@ -72,9 +76,11 @@ call plug#end()
 colorscheme onedark
 let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 
 let NERDTreeShowBookmarks=1
 

@@ -29,6 +29,10 @@ My Persoal Vim setup & notes
 - q<letter> start record.  q again. stop.  @<letter> replay recording
 - .  - redo last motion
 - :terminal <C+\><C+n>  - enter terminal normal mode.  i or a to go back to job mode
+- :mksession! ~/.vim/dev.vim  - creates session to restore
+- :wviminfo! ~/.vim/dev.viminfo - create vim info (its differen than session.)
+- :source dev.vim  or vim -S dev.vim to load session
+- :rviminfo! ~/.vim/dev.viminfo - loads the viminfo
 
 # install Plug (my preferred plugin tool.  they all seem good though)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
