@@ -39,7 +39,9 @@ My Persoal Vim setup & notes
 # install Plug (my preferred plugin tool.  they all seem good though)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# TO install or update plugins
 # run :PlugInstall or :PlugUpdate to install/update plugins periodically
+# run :CocUpdate
 
 # install airblade
 
