@@ -62,8 +62,8 @@ yum install -y the_silver_searcher bat ripgrep
 # note bat and ripgrep may not be found
 
 #mac
-"cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-"brew install the_silver_searcher bat ripgrep
+cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+brew install the_silver_searcher bat ripgrep
 
 
 # setup LSP servers for syntax highlighting
