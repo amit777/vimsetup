@@ -1,6 +1,5 @@
 "
 " ## CHEAT SHEET
-" :PlugUpdate to update plugins
 " gd - go to definition of variable or function
 " \f - go to nerd tree  s - open file in split mode
 " <ctrl+w>o - maximize/minimize windows
@@ -10,45 +9,19 @@
 " q<letter> start record.  q again. stop.  @<letter> replay recording
 " .  - redo last motion
 "
-" ## LINUX INSTALLATION NOTES
-"  yum install -y ctags git tcl-devel  ruby ruby-devel  lua lua-devel  luajit luajit-devel  python python-devel  perl perl-devel  perl-ExtUtils-ParseXS  perl-ExtUtils-XSpp  perl-ExtUtils-CBuilder  perl-ExtUtils-Embed
-"  git clone https://github.com/vim/vim.git
-"  cd vim 
-" ./configure --with-features=huge --prefix=/opt/vim  --enable-multibyte  -enable-rubyinterp  --enable-pythoninterp  --enable-perlinterp  --enable-luainterp copy autoload/win.vim for Ctrl-o maximize/restore
-" make install
-"
-" # install fonts and fzf
-" #linux
-" mkdir -p ~/.local/share/fonts
-" cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-" yum install -y the_silver_searcher bat ripgrep
-" # note bat and ripgrep may not be found
-
-" #mac
-"cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-"brew install the_silver_searcher bat ripgrep
-" 
-" # install Plug
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" npm i -g svelte-language-server eslint prettier prettier-plugin-svelte
-" :PlugInstall
-" :CocInstall coc-tsserver coc-html coc-css coc-svelte coc-eslint coc-json coc-git
-" :CocCommand eslint.showOutputChannel
-" :CocCommand tsserver.showOutputChannel
-" :CocConfig
-"     ~/.v/coc-settings.json                                                                                                                                                                                             X
-"  {
-"  "coc.preferences.currentFunctionSymbolAutoUpdate":true
-"  }
-"
-" mkdir -p ~/.vim/pack/airblade/start
-" cd ~/.vim/pack/airblade/start
-" git clone https://github.com/airblade/vim-gitgutter.git
-" vim -u NONE -c "helptags vim-gitgutter/doc" -c q
-" Notes:
-"  nnoremap mean normal mode non-recursive map
 syntax on
+set timeoutlen=500 " Set timeout length to 500 ms
 
+" Tab navigation to specific tabs
+nnoremap <Leader>1 1gt
+nnoremap <Leader>2 2gt
+nnoremap <Leader>3 3gt
+nnoremap <Leader>4 4gt
+nnoremap <Leader>5 5gt
+nnoremap <Leader>6 6gt
+nnoremap <Leader>7 7gt
+nnoremap <Leader>8 8gt
+nnoremap <Leader>9 9gt
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
@@ -98,6 +71,11 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 colorscheme onedark
 let g:airline_theme='luna'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
 let NERDTreeShowBookmarks=1
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
