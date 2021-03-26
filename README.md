@@ -9,9 +9,11 @@ My Persoal Vim setup & notes
 - nnoremap means normal mode non-recursive map
 - nmap is normal mode map recursively
 - The default `<leader>` key is a backslash `\`
+- ftplugin = filetype plugins
 
 
 # Cheat Sheet
+- :OpenSession <name> :SaveSession <name>  - open and close sessions 
 - <leader>[1-9]  - remapped tab navigation
 - gt/gT switch tabs
 - :bd <num>  delete buffer #num (doesn't actually delete a file. just removes buffer)

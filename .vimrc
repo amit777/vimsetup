@@ -1,5 +1,6 @@
 "
 " ## CHEAT SHEET
+" :OpenSession <name> :SaveSession <name>  - open and close sessions 
 " bd/bo <num> - delete or open buffer num
 " gd - go to definition of variable or function
 " \f - go to nerd tree  s - open file in split mode
@@ -15,6 +16,7 @@
 " :rviminfo! ~/.vim/dev.viminfo - loads the viminfo
 syntax on
 set timeoutlen=500 " Set timeout length to 500 ms
+
 
 " Tab navigation to specific tabs
 nnoremap <Leader>1 1gt
@@ -60,18 +62,20 @@ set encoding=UTF-8
 set number
 " set statusline^=%t\ %h%w%m%r\ %{coc#status()}\ \ %{get(b:,'coc_current_function','')}\ %=%-{&ft}\ %l\ %c\ %P
 call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'preservim/nerdtree'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-airline/vim-airline'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
+Plug 'tpope/vim-fugitive' " git integration
+Plug 'preservim/nerdtree' " file explorer
+Plug 'sheerun/vim-polyglot'  " syntax highlighting 
+Plug 'vim-airline/vim-airline' " pretty statusline and tabline
+Plug 'joshdick/onedark.vim' " theme that looks like VSCode
+Plug 'vim-airline/vim-airline-themes' 
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' " show icons in nerdtree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast
 Plug 'junegunn/fzf.vim'
+Plug 'xolox/vim-misc' " needed by vim-session
+Plug 'xolox/vim-session'
 call plug#end()
 colorscheme onedark
 let g:airline_theme='luna'
@@ -83,6 +87,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 
 let NERDTreeShowBookmarks=1
+let g:session_autosave = 'no'
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
