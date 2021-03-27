@@ -74,7 +74,12 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep conten
 Plug 'junegunn/fzf.vim'
 Plug 'xolox/vim-misc' " needed by vim-session
 Plug 'xolox/vim-session'
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 call plug#end()
+
 colorscheme onedark
 let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
@@ -83,9 +88,28 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
 let NERDTreeShowBookmarks=1
 let g:session_autosave = 'no'
+
+" install coc extensions instead of using :CocInstall on each one
+let g:coc_global_extensions = [
+      \ 'coc-tsserver', 
+      \ 'coc-html', 
+      \ 'coc-css', 
+      \ 'coc-svelte', 
+      \ 'coc-eslint', 
+      \ 'coc-json', 
+      \ 'coc-git',
+      \ 'coc-prettier',
+      \ 'coc-swagger',
+      \ 'coc-clangd',
+      \ 'coc-python',
+      \ 'coc-snippets',
+      \ 'coc-vimlsp',
+      \ 'coc-perl',
+\ ]
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -274,4 +298,10 @@ nnoremap <silent> <C-w>o :call win#zoom_toggle()<CR>
 "shows/hides gutter line numbers and warnings
 nnoremap <silent> <leader>n :call win#toggle_gutter()<CR>
 nnoremap <silent> <leader>g :CocDiagnostics<CR>
+
+" expand snippet from coc-snippets
+imap <C-l> <Plug>(coc-snippets-expand)
+" this does the same thing as above. <tab> is default but it messes with Coc
+" variable completion
+let g:UltiSnipsExpandTrigger="<C-l>"
 

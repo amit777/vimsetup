@@ -71,10 +71,31 @@ brew install the_silver_searcher bat ripgrep
 
 
 # setup LSP servers for syntax highlighting
-npm i -g svelte-language-server eslint prettier prettier-plugin-svelte
+npm i -g svelte-language-server eslint prettier prettier-plugin-svelte vim-language-server
 # setup COC plugins
 
-:CocInstall coc-tsserver coc-html coc-css coc-svelte coc-eslint coc-json coc-git
+cpanm Perl::LanguageServer
+
+" TODO: move these to var 
+```
+let g:coc_global_extensions = [
+      \ 'coc-tsserver', 
+      \ 'coc-html', 
+      \ 'coc-css', 
+      \ 'coc-svelte', 
+      \ 'coc-eslint', 
+      \ 'coc-json', 
+      \ 'coc-git',
+      \ 'coc-prettier',
+      \ 'coc-swagger',
+      \ 'coc-clangd',
+      \ 'coc-python',
+      \ 'coc-snippets',
+      \ 'coc-vimlsp',
+      \ 'coc-perl',
+\ ]
+```
+:CocInstall :CocInstall coc-perl coc-prettier coc-swagger coc-go coc-clangd coc-python coc-snippets coc-vimlsp
 :CocCommand eslint.showOutputChannel
 :CocCommand tsserver.showOutputChannel
 :CocConfig
