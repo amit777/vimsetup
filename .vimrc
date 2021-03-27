@@ -88,7 +88,7 @@ Plug 'xolox/vim-session'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
 " pyenv install 3.9.2
@@ -345,5 +345,5 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
-" add vim-commentary for svelte
-autocmd FileType svelte setlocal commentstring=//\ %s
+" add tcomment_vim for svelte
+let g:tcomment#filetype#guess_svelte = 'html'
