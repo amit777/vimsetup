@@ -1,5 +1,6 @@
 "
 " ## CHEAT SHEET
+" gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
 " :OpenSession <name> :SaveSession <name>  - open and close sessions 
 " bd/bo <num> - delete or open buffer num
 " gd - go to definition of variable or function
@@ -87,6 +88,7 @@ Plug 'xolox/vim-session'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-commentary'
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
 " pyenv install 3.9.2
@@ -342,3 +344,6 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 "You may also wish to add mappings for up/down the stack, for example:
 nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+
+" add vim-commentary for svelte
+autocmd FileType svelte setlocal commentstring=//\ %s
