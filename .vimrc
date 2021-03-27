@@ -17,6 +17,8 @@
 "
 " ## snippets
 " <C-l> expands snippet
+" :UltiSnipsEdit  - add a snippet
+" syntax stuff https://yufanlu.net/2016/10/30/ultisnips/
 " ## DEBUGGER - keybindings: https://github.com/puremourning/vimspector#human-mode
 " 
 " F5 - start debugger.
@@ -318,6 +320,8 @@ imap <C-l> <Plug>(coc-snippets-expand)
 " this does the same thing as above. <tab> is default but it messes with Coc
 " variable completion
 let g:UltiSnipsExpandTrigger="<C-l>"
+
+
 " setup vimspector
 " :VimspectorUpdate to update gadgets
 let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
