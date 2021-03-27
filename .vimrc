@@ -14,6 +14,13 @@
 " :wviminfo! ~/.vim/dev.viminfo - create vim info (its differen than session.)
 " :source dev.vim  or vim -S dev.vim to load session
 " :rviminfo! ~/.vim/dev.viminfo - loads the viminfo
+"
+" ## snippets
+" <C-l> expands snippet
+" ## DEBUGGER - keybindings: https://github.com/puremourning/vimspector#human-mode
+" 
+" F5 - start debugger.
+" ,di  - put cursor over variable and shows value
 syntax on
 set timeoutlen=500 " Set timeout length to 500 ms
 
@@ -78,6 +85,13 @@ Plug 'xolox/vim-session'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+" brew install pyenv (mac m1 processessor requires some latest and greatest
+" stuff
+" pyenv install 3.9.2
+" pyenv global 3.9.2
+" nvm install v15.12.0
+" brew install vim -vd protobuf
+Plug 'puremourning/vimspector' " for debugger. 
 call plug#end()
 
 colorscheme onedark
@@ -304,4 +318,23 @@ imap <C-l> <Plug>(coc-snippets-expand)
 " this does the same thing as above. <tab> is default but it messes with Coc
 " variable completion
 let g:UltiSnipsExpandTrigger="<C-l>"
+" setup vimspector
+" :VimspectorUpdate to update gadgets
+let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
+" https://github.com/puremourning/vimspector#human-mode see key bindings
+let g:vimspector_enable_mappings='HUMAN'
+set mouse=a
+set noequalalways
+let mapleader = ','
+let maplocalleader = "\<Space>"
+let &runtimepath = &runtimepath . ',' . g:vimspector_test_plugin_path
 
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+"You may also wish to add mappings for up/down the stack, for example:
+nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
