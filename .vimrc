@@ -341,7 +341,29 @@ let g:UltiSnipsExpandTrigger="<C-l>"
 let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
 " https://github.com/puremourning/vimspector#human-mode see key bindings
 let g:vimspector_enable_mappings='HUMAN'
-set mouse=a
+" customize the UI to add Fkeys
+function! s:CustomiseWinBar()
+  call win_gotoid( g:vimspector_session_windows.code )
+  " Clear the existing WinBar created by Vimspector
+  nunmenu WinBar
+  nnoremenu WinBar.■\ Stop\(F3\) :call vimspector#Stop( { 'interactive': v:false } )<CR>
+  nnoremenu WinBar.▶\ Cont\(F5\) :call vimspector#Continue()<CR>
+  nnoremenu WinBar.▷\ Pause\(F6\) :call vimspector#Pause()<CR>
+  nnoremenu WinBar.↷\ Next\(F10\) :call vimspector#StepOver()<CR>
+  nnoremenu WinBar.→\ Step\(F11\) :call vimspector#StepInto()<CR>
+  nnoremenu WinBar.←\ Out\(F12\) :call vimspector#StepOut()<CR>
+  nnoremenu WinBar.⟲:\(F4\) :call vimspector#Restart()<CR>
+  nnoremenu WinBar.✕ :call vimspector#Reset( { 'interactive': v:false } )<CR>
+  " Cretae our own WinBar
+endfunction
+
+augroup MyVimspectorUICustomistaion
+  autocmd!
+  autocmd User VimspectorUICreated call s:CustomiseWinBar()
+augroup END
+
+"set mouse=a  " amit777 commented out this to focus on using keybindings.
+"mouse stuff was causing copy/paste issues
 set noequalalways
 let mapleader = '\' "this was comma by default.  changing back to \
 let maplocalleader = ","  " this was \<Space>.  changing to ,
