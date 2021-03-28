@@ -1,8 +1,14 @@
 "
 " ## CHEAT SHEET
+" \ev - edit vimrc
+:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+" \sv - source vimrc
+:nnoremap <leader>sv :source $MYVIMRC<CR>
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
 " :OpenSession <name> :SaveSession <name>  - open and close sessions 
+" :ls - list buffers
 " bd/bo <num> - delete or open buffer num
+" \bd - delete buffer but keep layout
 " gd - go to definition of variable or function
 " \f - go to nerd tree  s - open file in split mode
 " <ctrl+w>o - maximize/minimize windows
@@ -25,7 +31,7 @@
 " F5 - start debugger.
 " ,di  - put cursor over variable and shows value
 syntax on
-set timeoutlen=500 " Set timeout length to 500 ms
+set timeoutlen=1000 " Set timeout length to 500 ms
 
 
 " Tab navigation to specific tabs
@@ -70,8 +76,10 @@ set encoding=UTF-8
 set number
 " set statusline^=%t\ %h%w%m%r\ %{coc#status()}\ \ %{get(b:,'coc_current_function','')}\ %=%-{&ft}\ %l\ %c\ %P
 call plug#begin('~/.vim/plugged')
+Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
+Plug 'ap/vim-css-color' " shows css colors as bg for #<colorcode>
 Plug 'preservim/nerdtree' " file explorer
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
@@ -83,12 +91,16 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast
 Plug 'junegunn/fzf.vim'
 Plug 'xolox/vim-misc' " needed by vim-session
-Plug 'xolox/vim-session'
+Plug 'xolox/vim-session' ":OpenSession etc
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-Plug 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'  " the best code commenting tool
+Plug 'tpope/vim-surround' " easily surround stuff with quotes, parens and others
+Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
+Plug 'tpope/vim-repeat' " makes the dot repeat smarter
+Plug 'mbbill/undotree' " the best undo/redo visualization
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
 " pyenv install 3.9.2
@@ -331,8 +343,8 @@ let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
 let g:vimspector_enable_mappings='HUMAN'
 set mouse=a
 set noequalalways
-let mapleader = ','
-let maplocalleader = "\<Space>"
+let mapleader = '\' "this was comma by default.  changing back to \
+let maplocalleader = ","  " this was \<Space>.  changing to ,
 let &runtimepath = &runtimepath . ',' . g:vimspector_test_plugin_path
 
 " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
@@ -347,3 +359,5 @@ nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
 " add tcomment_vim for svelte
 let g:tcomment#filetype#guess_svelte = 'html'
+
+nnoremap <leader>un :UndotreeToggle<CR>
