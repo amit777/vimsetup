@@ -5,7 +5,7 @@
 " \sv - source vimrc
 :nnoremap <leader>sv :source $MYVIMRC<CR>
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
-" :OpenSession <name> :SaveSession <name>  - open and close sessions 
+" :Obsession <name> turn on session saving - open session with vim -S <name>
 " :ls - list buffers
 " bd/bo <num> - delete or open buffer num
 " \bd - delete buffer but keep layout
@@ -35,7 +35,6 @@ set timeoutlen=1000 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
 
-
 " Tab navigation to specific tabs
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
@@ -57,7 +56,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" \n changes to nerdtree focus
+" \f changes to nerdtree focus
 nnoremap <leader>f :NERDTreeFocus<CR>
 
 " Move around windows with Ctrl-j rather than Ctrl+W then j
@@ -92,8 +91,6 @@ Plug 'ryanoasis/vim-devicons' " show icons in nerdtree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast
 Plug 'junegunn/fzf.vim'
-Plug 'xolox/vim-misc' " needed by vim-session
-"Plug 'xolox/vim-session' ":OpenSession etc
 Plug 'tpope/vim-obsession'  " Call :Obsess <optional file/dir name>
 " Track the engine.
 Plug 'SirVer/ultisnips'
