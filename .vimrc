@@ -13,7 +13,7 @@
 " \f - go to nerd tree  s - open file in split mode
 " <ctrl+w>o - maximize/minimize windows
 " K - get documentation about a function/symbol
-" \n - toggle gutter line numbers
+" \l - toggle gutter line numbers
 " \g - show diagnostics pane
 " q<letter> start record.  q again. stop.  @<letter> replay recording
 " .  - redo last motion
@@ -332,7 +332,7 @@ nnoremap <silent> <C-w>o :call win#zoom_toggle()<CR>
 
 
 "shows/hides gutter line numbers and warnings
-nnoremap <silent> <leader>n :call win#toggle_gutter()<CR>
+nnoremap <silent> <leader>l :call win#toggle_gutter()<CR>
 nnoremap <silent> <leader>g :CocDiagnostics<CR>
 
 " expand snippet from coc-snippets

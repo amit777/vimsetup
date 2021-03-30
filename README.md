@@ -26,7 +26,7 @@ My Persoal Vim setup & notes
 - \f - go to nerd tree  s - open file in split mode
 - <ctrl+w>o - maximize/minimize windows (uses funcs from autoload/win.vim)
 - K - get documentation about a function/symbol (coc function)
-- \n - toggle gutter line numbers (uses funcs from autoload/win/vim)
+- \l - toggle gutter line numbers (uses funcs from autoload/win/vim)
 - \g - show diagnostics pane (sames as :CocDiagnostics)
 - q<letter> start record.  q again. stop.  @<letter> replay recording
 - .  - redo last motion
