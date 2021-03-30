@@ -26,7 +26,7 @@ My Persoal Vim setup & notes
 - \f - go to nerd tree  s - open file in split mode
 - <ctrl+w>o - maximize/minimize windows (uses funcs from autoload/win.vim)
 - K - get documentation about a function/symbol (coc function)
-- \n - toggle gutter line numbers (uses funcs from autoload/win/vim)
+- \l - toggle gutter line numbers (uses funcs from autoload/win/vim)
 - \g - show diagnostics pane (sames as :CocDiagnostics)
 - q<letter> start record.  q again. stop.  @<letter> replay recording
 - .  - redo last motion
@@ -52,11 +52,56 @@ vim -u NONE -c "helptags vim-gitgutter/doc" -c q
 
 ## LINUX INSTALLATION NOTES
 yum install -y ctags git tcl-devel  ruby ruby-devel  lua lua-devel  luajit luajit-devel  python python-devel  perl perl-devel  perl-ExtUtils-ParseXS  perl-ExtUtils-XSpp  perl-ExtUtils-CBuilder  perl-ExtUtils-Embed
+# linux setup python3 (some plugins need it)
+yum install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libffi-devel
+yum install -y python python-devel python36u python36u-devel
+yum install -y tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed cscope gtk3-devel libSM-devel libXt-devel libXpm-devel libappstream-glib libacl-devel gpm-devel
+yum install -y ncurses-devel
 
+
+
+
+make && sudo make install
+
+hash -r
+curl https://pyenv.run | bash
+add to .bashrc
+```bash
+export PATH="/root/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+```
+```bash
+pyenv install 3.9.2
+pyenv global 3.9.2
+```
+
+```bash
+scl enable devtoolset-8 bash
+cd
 git clone https://github.com/vim/vim.git
-cd vim 
-./configure --with-features=huge --prefix=/opt/vim  --enable-multibyte  -enable-rubyinterp  --enable-pythoninterp  --enable-perlinterp  --enable-luainterp copy autoload/win.vim for Ctrl-o maximize/restore
+cd vim
+
+./configure --with-features=huge \
+    --enable-multibyte \
+    --enable-rubyinterp=yes \
+    --enable-python3interp=yes \
+    --with-tlib=ncurses \
+    --enable-perlinterp=yes \
+    --enable-luainterp=yes \
+    --enable-terminal \
+    --enable-cscope \
+    --prefix=/opt/vim \
+    --with-python3-command=python3
 make install
+```
+
+copy various vim dirs and autoload dirs
+```
+cp -r UltiSnips ~/.vim/
+cp coc-settings.json ~/.vim/
+cp autoload/* ~/.vim/autoload/
+```
 
 # install fonts and fzf
 #linux
@@ -79,7 +124,7 @@ npm i -g svelte-language-server eslint prettier prettier-plugin-svelte vim-langu
 cpanm Perl::LanguageServer
 
 " TODO: move these to var 
-```
+```viml
 let g:coc_global_extensions = [
       \ 'coc-tsserver', 
       \ 'coc-html', 
@@ -96,13 +141,11 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-perl',
 \ ]
+
 ```
-:CocInstall :CocInstall coc-perl coc-prettier coc-swagger coc-go coc-clangd coc-python coc-snippets coc-vimlsp
+
+This is for permissions
+```viml
 :CocCommand eslint.showOutputChannel
 :CocCommand tsserver.showOutputChannel
-:CocConfig
-"     ~/.v/coc-settings.json                                                                                                                                                                                             X
- {
-  "coc.preferences.currentFunctionSymbolAutoUpdate":true
- }
-
+```
