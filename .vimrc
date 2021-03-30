@@ -114,6 +114,7 @@ Plug 'tpope/vim-eunuch' " :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
 " brew install vim -vd protobuf
 Plug 'puremourning/vimspector' " for debugger. F5 launches it
 Plug 'skanehira/docker.vim' 
+Plug 'will133/vim-dirdiff'
 call plug#end()
 
 colorscheme onedark
