@@ -17,10 +17,10 @@
 " \g - show diagnostics pane
 " q<letter> start record.  q again. stop.  @<letter> replay recording
 " .  - redo last motion
-" :mksession! ~/.vim/dev.vim  - creates session to restore
-" :wviminfo! ~/.vim/dev.viminfo - create vim info (its differen than session.)
-" :source dev.vim  or vim -S dev.vim to load session
-" :rviminfo! ~/.vim/dev.viminfo - loads the viminfo
+"
+" :Obsession <name/dir> record session and auto save. vim -S Session.vim to
+" cs'"  - changes surrounding single quotes to double
+" ysiw`  - yank surround innerword with backtick
 "
 " ## snippets
 " <C-l> expands snippet
@@ -31,7 +31,7 @@
 " F5 - start debugger.
 " ,di  - put cursor over variable and shows value
 syntax on
-set timeoutlen=700 " Set timeout length to 500 ms
+set timeoutlen=1000 " Set timeout length to 500 ms
 
 
 " Tab navigation to specific tabs
@@ -91,7 +91,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast
 Plug 'junegunn/fzf.vim'
 Plug 'xolox/vim-misc' " needed by vim-session
-Plug 'xolox/vim-session' ":OpenSession etc
+"Plug 'xolox/vim-session' ":OpenSession etc
+Plug 'tpope/vim-obsession'  " Call :Obsess <optional file/dir name>
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -101,6 +102,7 @@ Plug 'tpope/vim-surround' " easily surround stuff with quotes, parens and others
 Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
 Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle this
+" Plug 'tpope/vim-vinegar' " better netrw. remove nerdtree? netrw is builtin and does scp  
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
 " pyenv install 3.9.2
