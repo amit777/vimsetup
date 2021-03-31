@@ -3,9 +3,7 @@ let g:polyglot_disabled = ['svelte']
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
 " \ev - edit vimrc
-:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " \sv - source vimrc
-:nnoremap <leader>sv :source $MYVIMRC<CR>
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
 " \h  or :History - opens up window of recent files. fzf
 "     ctrl+x/v - opens in horizontal/vertical split
@@ -439,6 +437,10 @@ nnoremap <Leader>t9 9gt
 
 nnoremap <leader>/  :<C-u>Ag<cr>
 nnoremap <leader>h  :History<cr>
+
+" make it easy to edit vimrc file
+:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+:nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Fix up code while typing
 augroup formatgroup
