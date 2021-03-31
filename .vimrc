@@ -1,4 +1,5 @@
 "
+" :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
 " \ev - edit vimrc
 :nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -9,8 +10,7 @@
 " :ls - list buffers
 " bd/bo <num> - delete or open buffer num
 " \bd - delete buffer but keep layout
-" gd - go to definition of variable or function
-" \f - go to nerd tree  s - open file in split mode
+" gd - go to definition of variable or function \f - go to file explorer s - open file in split mode
 " <ctrl+w>o - maximize/minimize windows
 " K - get documentation about a function/symbol
 " \l - toggle gutter line numbers
@@ -21,6 +21,7 @@
 " :Obsession <name/dir> record session and auto save. vim -S Session.vim to
 " cs'"  - changes surrounding single quotes to double
 " ysiw`  - yank surround innerword with backtick
+" \/ - Ag grep.  :.cc over file to open it in quickfix list
 "
 " ## snippets
 " <C-l> expands snippet
@@ -35,29 +36,6 @@ set timeoutlen=1000 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
 
-" Tab navigation to specific tabs
-nnoremap <Leader>1 1gt
-nnoremap <Leader>2 2gt
-nnoremap <Leader>3 3gt
-nnoremap <Leader>4 4gt
-nnoremap <Leader>5 5gt
-nnoremap <Leader>6 6gt
-nnoremap <Leader>7 7gt
-nnoremap <Leader>8 8gt
-nnoremap <Leader>9 9gt
-
-" Start NERDTree. If a file is specified, move the cursor to its window.
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-
-" Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" \f changes to nerdtree focus
-nnoremap <leader>f :NERDTreeFocus<CR>
 
 " Move around windows with Ctrl-j rather than Ctrl+W then j
 nnoremap <C-j> <C-W>j
@@ -77,20 +55,20 @@ set encoding=UTF-8
 set number
 " set statusline^=%t\ %h%w%m%r\ %{coc#status()}\ \ %{get(b:,'coc_current_function','')}\ %=%-{&ft}\ %l\ %c\ %P
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
+Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'ap/vim-css-color' " shows css colors as bg for #<colorcode>
-Plug 'preservim/nerdtree' " file explorer
+"Plug 'preservim/nerdtree' " file explorer
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
 Plug 'joshdick/onedark.vim' " theme that looks like VSCode
 Plug 'vim-airline/vim-airline-themes' 
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons' " show icons in nerdtree
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'  " Call :Obsess <optional file/dir name>
 " Track the engine.
 Plug 'SirVer/ultisnips'
@@ -112,7 +90,10 @@ Plug 'tpope/vim-eunuch' " :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
 Plug 'puremourning/vimspector' " for debugger. F5 launches it
 Plug 'skanehira/docker.vim' 
 Plug 'will133/vim-dirdiff'
+Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 call plug#end()
+
+let g:prettier#autoformat_require_pragma = 0
 
 colorscheme onedark
 let g:airline_theme='luna'
@@ -124,14 +105,16 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
-let NERDTreeShowBookmarks=1
+"let NERDTreeShowBookmarks=1
 let g:session_autosave = 'no'
 
 " install coc extensions instead of using :CocInstall on each one
 let g:coc_global_extensions = [
       \ 'coc-tsserver', 
+      \ 'coc-lists', 
       \ 'coc-html', 
       \ 'coc-css', 
+      \ 'coc-explorer', 
       \ 'coc-svelte', 
       \ 'coc-eslint', 
       \ 'coc-json', 
@@ -143,7 +126,11 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-vimlsp',
       \ 'coc-perl',
+      \ 'coc-pairs',
+      \ 'coc-yank',
 \ ]
+
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -387,3 +374,54 @@ nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 let g:tcomment#filetype#guess_svelte = 'html'
 
 nnoremap U :UndotreeToggle<CR>
+
+" coc-explorer
+function! s:explorer_cur_dir()
+  let node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+  return fnamemodify(node_info['fullpath'], ':h')
+endfunction
+
+function! s:exec_cur_dir(cmd)
+  let dir = s:explorer_cur_dir()
+  execute 'cd ' . dir
+  execute a:cmd
+endfunction
+
+
+" Use preset argument to open it
+nnoremap <leader>f :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+" fix for vim sessions not working with coc-explorer
+set sessionoptions=curdir,folds,help,slash,tabpages,unix
+
+
+" Show all diagnostics.
+
+" buffer navigation to specific tabs
+" use nmap instead of nnoremap
+nmap <Leader>1 <Plug>AirlineSelectTab1
+nmap <Leader>2 <Plug>AirlineSelectTab2
+nmap <Leader>3 <Plug>AirlineSelectTab3
+nmap <Leader>4 <Plug>AirlineSelectTab4 
+nmap <Leader>5 <Plug>AirlineSelectTab5
+nmap <Leader>6 <Plug>AirlineSelectTab6
+nmap <Leader>7 <Plug>AirlineSelectTab7
+nmap <Leader>8 <Plug>AirlineSelectTab8
+nmap <Leader>9 <Plug>AirlineSelectTab9
+
+
+
+" Tab navigation to specific tabs
+nnoremap <Leader>t1 1gt
+nnoremap <Leader>t2 2gt
+nnoremap <Leader>t3 3gt
+nnoremap <Leader>t4 4gt
+nnoremap <Leader>t5 5gt
+nnoremap <Leader>t6 6gt
+nnoremap <Leader>t7 7gt
+nnoremap <Leader>t8 8gt
+nnoremap <Leader>t9 9gt
+
+
+nnoremap <leader>/  :<C-u>Ag<cr>
