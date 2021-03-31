@@ -149,3 +149,11 @@ This is for permissions
 :CocCommand eslint.showOutputChannel
 :CocCommand tsserver.showOutputChannel
 ```
+
+
+# MAC env setup
+brew install bash-completion
+
+# setup symlinks to .vimrc and coc-settings.json
+ln -s ~/git/vimsetup/.vimrc ~/.vimrc
+ln -s ~/git/vimsetup/coc-settings.json ~/.vim/coc-settings.json

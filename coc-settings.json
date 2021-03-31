@@ -7,10 +7,6 @@
   "explorer.icon.enableVimDevicons": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
-//  "explorer.keyMappings.global": {
-//    "<cr>": ["expandable?", "expand", "open"],
-//    "v": "open:vsplit"
-//  }
   "explorer.keyMappings.global": {
     "i": "previewOnHover:toggle:labeling",
     "c": "previewOnHover:toggle:content",

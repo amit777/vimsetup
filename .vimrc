@@ -54,7 +54,6 @@ set nocompatible
 set laststatus=2
 set encoding=UTF-8
 set number
-" set statusline^=%t\ %h%w%m%r\ %{coc#status()}\ \ %{get(b:,'coc_current_function','')}\ %=%-{&ft}\ %l\ %c\ %P
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
 Plug 'junegunn/fzf.vim'
