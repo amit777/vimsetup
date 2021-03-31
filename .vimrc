@@ -1,3 +1,4 @@
+let g:polyglot_disabled = ['svelte']
 "
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
@@ -6,6 +7,8 @@
 " \sv - source vimrc
 :nnoremap <leader>sv :source $MYVIMRC<CR>
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
+" \h  or :History - opens up window of recent files. fzf
+"     ctrl+x/v - opens in horizontal/vertical split
 " :Obsession <name> turn on session saving - open session with vim -S <name>
 " :ls - list buffers
 " bd/bo <num> - delete or open buffer num
@@ -64,11 +67,12 @@ Plug 'ap/vim-css-color' " shows css colors as bg for #<colorcode>
 "Plug 'preservim/nerdtree' " file explorer
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
-Plug 'joshdick/onedark.vim' " theme that looks like VSCode
+"Plug 'joshdick/onedark.vim' " theme that looks like VSCode
+Plug 'rakr/vim-one'  "like atom editor"
 Plug 'vim-airline/vim-airline-themes' 
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-obsession'  " Call :Obsess <optional file/dir name>
 " Track the engine.
 Plug 'SirVer/ultisnips'
@@ -90,20 +94,29 @@ Plug 'tpope/vim-eunuch' " :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
 Plug 'puremourning/vimspector' " for debugger. F5 launches it
 Plug 'skanehira/docker.vim' 
 Plug 'will133/vim-dirdiff'
-Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
+Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
+"Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
+"Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 call plug#end()
 
 let g:prettier#autoformat_require_pragma = 0
 
-colorscheme onedark
-let g:airline_theme='luna'
+"colorscheme onedark
+set background=dark
+colorscheme one
+let g:airline_theme='one'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+let g:airline_powerline_fonts = 1
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+
+" for making sure indent works fine with svelte
+"let g:svelte_indent_script = 0
+"let g:svelte_indent_style = 0
 
 "let NERDTreeShowBookmarks=1
 let g:session_autosave = 'no'
@@ -225,7 +238,7 @@ nmap <leader>rn <Plug>(coc-rename)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,javascript,svelte setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -425,3 +438,28 @@ nnoremap <Leader>t9 9gt
 
 
 nnoremap <leader>/  :<C-u>Ag<cr>
+nnoremap <leader>h  :History<cr>
+
+" Fix up code while typing
+augroup formatgroup
+    autocmd!
+    autocmd! InsertLeave *.svelte  call CocAction('format')
+    autocmd! InsertLeave *.js  call CocAction('format')
+    autocmd! InsertLeave *.css  call CocAction('format')
+augroup END
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
