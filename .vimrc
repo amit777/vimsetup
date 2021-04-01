@@ -1,4 +1,4 @@
-let g:polyglot_disabled = ['svelte']
+let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
 "
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
