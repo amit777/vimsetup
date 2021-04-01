@@ -397,6 +397,10 @@ function! s:exec_cur_dir(cmd)
   execute a:cmd
 endfunction
 
+let g:airline_filetype_overrides = {
+     \ 'coc-explorer':  [ 'File Explorer', '' ],
+  \ }
+
 
 " Use preset argument to open it
 nnoremap <leader>f :CocCommand explorer<CR>
@@ -464,3 +468,9 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+" reopen file in last position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
