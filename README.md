@@ -123,7 +123,7 @@ npm i -g svelte-language-server eslint prettier prettier-plugin-svelte vim-langu
 
 cpanm Perl::LanguageServer
 
-" TODO: move these to var 
+" Install new CoC modules by updating the array 
 ```viml
 let g:coc_global_extensions = [
       \ 'coc-tsserver', 
@@ -155,5 +155,7 @@ This is for permissions
 brew install bash-completion
 
 # setup symlinks to .vimrc and coc-settings.json
+```
 ln -s ~/git/vimsetup/.vimrc ~/.vimrc
 ln -s ~/git/vimsetup/coc-settings.json ~/.vim/coc-settings.json
+```
