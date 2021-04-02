@@ -2,6 +2,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 "
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" za - fold/unfold. 
 " \ev - edit vimrc
 " \sv - source vimrc
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
@@ -36,7 +37,9 @@ syntax on
 set timeoutlen=1000 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
-
+set foldmethod=syntax
+"set foldmethod=indent
+" make space bar fold and unfold
 
 " Move around windows with Ctrl-j rather than Ctrl+W then j
 nnoremap <C-j> <C-W>j
@@ -474,3 +477,4 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+au BufRead * normal zR
