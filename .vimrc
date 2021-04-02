@@ -2,7 +2,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 "
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
-" za - fold/unfold. 
+" za - fold/unfold.  mapped to <space> <space>
 " \ev - edit vimrc
 " \sv - source vimrc
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
@@ -38,6 +38,7 @@ set timeoutlen=1000 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
 set foldmethod=syntax
+noremap <space><space> za
 "set foldmethod=indent
 " make space bar fold and unfold
 
