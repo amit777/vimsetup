@@ -98,6 +98,7 @@ Plug 'will133/vim-dirdiff'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
 "Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
 "Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
+Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
 call plug#end()
 
 let g:prettier#autoformat_require_pragma = 0
@@ -453,8 +454,8 @@ nnoremap <leader>h  :History<cr>
 augroup formatgroup
     autocmd!
     autocmd! InsertLeave *.svelte  call CocAction('format')
-    autocmd! InsertLeave *.js  call CocAction('format')
-    autocmd! InsertLeave *.css  call CocAction('format')
+"    autocmd! InsertLeave *.js  call CocAction('format')
+"    autocmd! InsertLeave *.css  call CocAction('format')
 augroup END
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.

@@ -66,8 +66,8 @@
     "X": "systemExecute",
     "gd": "listDrive",
 
-    "F": "search", // was f
-    "f": "searchRecursive", // F
+    "F": "search:strict", // was f
+    "f": "search:strict|recursive", // F
 
     "gf": "gotoSource:file",
     "gb": "gotoSource:buffer",
