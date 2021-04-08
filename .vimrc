@@ -2,6 +2,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 "
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" @:  - runs last :command 
 " za - fold/unfold.  mapped to <space> <space>
 " \ev - edit vimrc
 " \sv - source vimrc
@@ -68,7 +69,6 @@ Plug 'ap/vim-css-color' " shows css colors as bg for #<colorcode>
 "Plug 'preservim/nerdtree' " file explorer
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
-"Plug 'joshdick/onedark.vim' " theme that looks like VSCode
 Plug 'rakr/vim-one'  "like atom editor"
 Plug 'vim-airline/vim-airline-themes' 
 "Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -85,6 +85,7 @@ Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
 Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle this
 Plug 'tpope/vim-eunuch' " :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
+Plug 'tpope/vim-dadbod' " database manipulation"
 " Plug 'tpope/vim-vinegar' " better netrw. remove nerdtree? netrw is builtin and does scp  
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
@@ -99,11 +100,11 @@ Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanle
 "Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
 "Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
+Plug 't9md/vim-choosewin'
 call plug#end()
 
 let g:prettier#autoformat_require_pragma = 0
 
-"colorscheme onedark
 set background=dark
 colorscheme one
 let g:airline_theme='one'
@@ -480,3 +481,14 @@ if has("autocmd")
 endif
 
 au BufRead * normal zR
+
+" set scroll offset context so search results don't appear at bottom
+:set scrolloff=5
+" Get to next error.  also type @: to run last command
+command! -nargs=0 ErrNext                               :call CocAction('diagnosticNext')<CR>
+command! -nargs=0 ErrPrev                               :call CocAction('diagnosticPrevious')<CR>
+
+" invoke with '-'
+nmap  -  <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+
