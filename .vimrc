@@ -105,6 +105,21 @@ call plug#end()
 
 let g:prettier#autoformat_require_pragma = 0
 
+" this function is for overriding the default theme colors
+" https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+function! MyHighlights() abort
+    highlight CocHighlightText  ctermbg=17        guibg=#494949
+    "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
+    "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
+    "highlight Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+    "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+endfunction
+
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * call MyHighlights()
+augroup END
+
 set background=dark
 colorscheme one
 let g:airline_theme='one'
