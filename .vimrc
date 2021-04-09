@@ -3,6 +3,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
 " @:  - runs last :command 
+" :Lens  - toggles lens resize mode
 " za - fold/unfold.  mapped to <space> <space>
 " \ev - edit vimrc
 " \sv - source vimrc
@@ -102,6 +103,8 @@ Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanle
 "Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
 Plug 't9md/vim-choosewin'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 call plug#end()
 
 let g:prettier#autoformat_require_pragma = 0
@@ -512,3 +515,8 @@ let g:choosewin_overlay_enable = 1
 " easily jump between syntax errors and warnings
 command! -nargs=0 ErrNext                               :call CocAction('diagnosticNext')<CR>
 command! -nargs=0 ErrPrev                               :call CocAction('diagnosticPrevious')<CR>
+
+let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
+"let g:lens#animate = 0
+
+command! Lens :call lens#toggle() 
