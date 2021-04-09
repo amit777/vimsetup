@@ -86,6 +86,7 @@ Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle this
 Plug 'tpope/vim-eunuch' " :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
 Plug 'tpope/vim-dadbod' " database manipulation"
+Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'tpope/vim-vinegar' " better netrw. remove nerdtree? netrw is builtin and does scp  
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
@@ -503,7 +504,11 @@ au BufRead * normal zR
 command! -nargs=0 ErrNext                               :call CocAction('diagnosticNext')<CR>
 command! -nargs=0 ErrPrev                               :call CocAction('diagnosticPrevious')<CR>
 
-" invoke with '-'
+" invoke window chooser with '-'
 nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
+
+" easily jump between syntax errors and warnings
+command! -nargs=0 ErrNext                               :call CocAction('diagnosticNext')<CR>
+command! -nargs=0 ErrPrev                               :call CocAction('diagnosticPrevious')<CR>
