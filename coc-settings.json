@@ -1,6 +1,8 @@
 {
   "coc.preferences.currentFunctionSymbolAutoUpdate":true,
   "coc.preferences.jumpCommand": "vsplit",
+// disable tsserver warnings
+  "javascript.suggestionActions.enabled": false,
 // explorer
   "explorer.quitOnOpen": false,
   "explorer.file.showHiddenFiles": true,
