@@ -1,7 +1,9 @@
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
 "
+" https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" viw (selects word), then St<tag> - surrond selection with tag
 " @:  - runs last :command 
 " :Lens  - toggles lens resize mode
 " za - fold/unfold.  mapped to <space> <space>
