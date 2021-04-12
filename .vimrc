@@ -513,11 +513,6 @@ command! -nargs=0 ErrPrev                               :call CocAction('diagnos
 nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
-
-" easily jump between syntax errors and warnings
-command! -nargs=0 ErrNext                               :call CocAction('diagnosticNext')<CR>
-command! -nargs=0 ErrPrev                               :call CocAction('diagnosticPrevious')<CR>
-
 let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
 "let g:lens#animate = 0
 
