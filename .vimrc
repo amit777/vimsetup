@@ -3,6 +3,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" :Ag grep search
 " viw (selects word), then St<tag> - surrond selection with tag
 " @:  - runs last :command 
 " :Lens  - toggles lens resize mode
@@ -128,7 +129,7 @@ augroup END
 
 set background=dark
 colorscheme one
-let g:airline_theme='one'
+let g:airline_theme='cobalt2'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -517,3 +518,6 @@ let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
 "let g:lens#animate = 0
 
 command! Lens :call lens#toggle() 
+
+set grepprg=ag\ --vimgrep
+
