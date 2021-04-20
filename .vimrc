@@ -3,6 +3,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" <space> y - brings up advanced yank history. hit Enter to paste selection
 " :Ag grep search
 " viw (selects word), then St<tag> - surrond selection with tag
 " @:  - runs last :command 
@@ -130,6 +131,9 @@ augroup END
 set background=dark
 colorscheme one
 let g:airline_theme='cobalt2'
+let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -151,17 +155,17 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver', 
       \ 'coc-lists', 
       \ 'coc-html', 
+      \ 'coc-clangd',
       \ 'coc-css', 
-      \ 'coc-explorer', 
-      \ 'coc-svelte', 
       \ 'coc-eslint', 
+      \ 'coc-explorer', 
       \ 'coc-json', 
       \ 'coc-git',
       \ 'coc-prettier',
       \ 'coc-swagger',
-      \ 'coc-clangd',
       \ 'coc-python',
       \ 'coc-snippets',
+      \ 'coc-svelte', 
       \ 'coc-vimlsp',
       \ 'coc-perl',
       \ 'coc-pairs',
@@ -515,7 +519,7 @@ nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
 let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
-"let g:lens#animate = 0
+let g:lens#animate = 0
 
 command! Lens :call lens#toggle() 
 
