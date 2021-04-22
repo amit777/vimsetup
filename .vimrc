@@ -111,6 +111,11 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 call plug#end()
 
+" these are because i mistype :Q and :Vsplit and :Wq
+:command -nargs=* Q q <args>
+:command -nargs=* Vsplit vsplit <args>
+:command -nargs=* Wq Wq <args>
+
 let g:prettier#autoformat_require_pragma = 0
 
 " this function is for overriding the default theme colors
@@ -139,7 +144,8 @@ let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+"let g:airline#extensions#tabline#formatter = 'tabnr'
+"let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline_powerline_fonts = 1
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
