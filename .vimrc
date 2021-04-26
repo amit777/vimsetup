@@ -27,7 +27,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " K - get documentation about a function/symbol
 " \l - toggle gutter line numbers
 " \g - show diagnostics pane
-" q<letter> start record.  q again. stop.  @<letter> replay recording
+" q<letter> start record.  q again. stop.  @@ or  @<letter> replay recording
 " .  - redo last motion
 "
 " :Obsession <name/dir> record session and auto save. vim -S Session.vim to
@@ -454,6 +454,7 @@ nnoremap <Leader>F :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <leader>/  :<C-u>Ag<cr>
 nnoremap <leader>h  :History<cr>
+nnoremap <leader>H  :Helptags!<cr>
 
 
 " fix for vim sessions not working with coc-explorer
