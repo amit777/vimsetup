@@ -13,7 +13,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " @:  - runs last :command 
 " :Lens  - toggles lens resize mode
 " za - fold/unfold.  mapped to <space> <space>
-" \ev - edit vimrc
+" \vr - edit vimrc
 " \sv - source vimrc
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
 " \h  or :History - opens up window of recent files. fzf
@@ -490,7 +490,7 @@ nnoremap <Leader>t9 9gt
 
 
 " make it easy to edit vimrc file
-:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+:nnoremap <leader>vr :vsplit $MYVIMRC<CR>
 :nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Fix up code while typing
