@@ -3,6 +3,10 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" \e - open file explorer
+" \f \F \b \h - run :GFiles :Files, :Buffers :History
+"     tab/shift+tab select multiple files. ctrl+v ctrl+x open in splits
+" zR - unfold all
 " <space> y - brings up advanced yank history. hit Enter to paste selection
 " :Ag grep search
 " viw (selects word), then St<tag> - surrond selection with tag
@@ -82,6 +86,7 @@ Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
 Plug 'tpope/vim-obsession'  " Call :Obsess <optional file/dir name>
 " Track the engine.
 Plug 'SirVer/ultisnips'
+Plug 'jacoborus/tender.vim'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'  " ctrl-l completes 
 Plug 'tomtom/tcomment_vim'  " the best code commenting tool. gcc toggles
@@ -134,8 +139,8 @@ augroup MyColors
 augroup END
 
 set background=dark
-colorscheme one
-let g:airline_theme='cobalt2'
+colorscheme tender
+let g:airline_theme='tender'
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#show_tab_nr = 0
@@ -441,8 +446,15 @@ let g:airline_filetype_overrides = {
 
 
 " Use preset argument to open it
-nnoremap <leader>f :CocCommand explorer<CR>
+nnoremap <Leader>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+nnoremap <Leader>f :GFiles<CR>
+nnoremap <Leader>F :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <leader>/  :<C-u>Ag<cr>
+nnoremap <leader>h  :History<cr>
+
 
 " fix for vim sessions not working with coc-explorer
 set sessionoptions=curdir,folds,help,slash,tabpages,unix
@@ -476,9 +488,6 @@ nnoremap <Leader>t8 8gt
 nnoremap <Leader>t9 9gt
 
 
-nnoremap <leader>/  :<C-u>Ag<cr>
-nnoremap <leader>h  :History<cr>
-
 " make it easy to edit vimrc file
 :nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 :nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -486,7 +495,7 @@ nnoremap <leader>h  :History<cr>
 " Fix up code while typing
 augroup formatgroup
     autocmd!
-    autocmd! InsertLeave *.svelte  call CocAction('format')
+"    autocmd! InsertLeave *.svelte  call CocAction('format')
 "    autocmd! InsertLeave *.js  call CocAction('format')
 "    autocmd! InsertLeave *.css  call CocAction('format')
 augroup END
