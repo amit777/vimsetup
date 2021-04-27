@@ -6,15 +6,15 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " \e - open file explorer
 " \f \F \b \h - run :GFiles :Files, :Buffers :History
 "     tab/shift+tab select multiple files. ctrl+v ctrl+x open in splits
-" zR - unfold all
+" \z or zR - unfold all
 " <space> y - brings up advanced yank history. hit Enter to paste selection
 " :Ag grep search
 " viw (selects word), then St<tag> - surrond selection with tag
 " @:  - runs last :command 
 " :Lens  - toggles lens resize mode
 " za - fold/unfold.  mapped to <space> <space>
-" \vr - edit vimrc
-" \sv - source vimrc
+" \ve - edit vimrc
+" \vs - source vimrc
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
 " \h  or :History - opens up window of recent files. fzf
 "     ctrl+x/v - opens in horizontal/vertical split
@@ -490,8 +490,8 @@ nnoremap <Leader>t9 9gt
 
 
 " make it easy to edit vimrc file
-:nnoremap <leader>vr :vsplit $MYVIMRC<CR>
-:nnoremap <leader>sv :source $MYVIMRC<CR>
+:nnoremap <leader>ve :vsplit $MYVIMRC<CR>
+:nnoremap <leader>vs :source $MYVIMRC<CR>
 
 " Fix up code while typing
 augroup formatgroup
@@ -541,3 +541,4 @@ command! Lens :call lens#toggle()
 
 set grepprg=ag\ --vimgrep
 
+nnoremap <Leader>z zR
