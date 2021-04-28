@@ -449,13 +449,6 @@ let g:airline_filetype_overrides = {
 nnoremap <Leader>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
-nnoremap <Leader>f :GFiles<CR>
-nnoremap <Leader>F :Files<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <leader>/  :<C-u>Ag<cr>
-nnoremap <leader>h  :History<cr>
-nnoremap <leader>H  :Helptags!<cr>
-
 
 " fix for vim sessions not working with coc-explorer
 set sessionoptions=curdir,folds,help,slash,tabpages,unix
@@ -534,11 +527,28 @@ command! -nargs=0 ErrPrev                               :call CocAction('diagnos
 nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
+" window lenz functions
 let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
 let g:lens#animate = 0
-
 command! Lens :call lens#toggle() 
 
 set grepprg=ag\ --vimgrep
 
+" unfold all
 nnoremap <Leader>z zR
+
+" make FZF grep through gitfiles
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>). ' ":(exclude)yarn.lock"', 0,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--no-hscroll'},'up:60%')
+  \           : fzf#vim#with_preview({'options': '--no-hscroll'},'right:50%'),
+  \   <bang>0)
+
+nnoremap <Leader>f :GFiles<CR>
+nnoremap <Leader>F :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <leader>/  :GGrep<cr>
+nnoremap <leader>h  :History<cr>
+nnoremap <leader>H  :Helptags!<cr>
+
