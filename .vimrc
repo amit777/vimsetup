@@ -538,7 +538,7 @@ set grepprg=ag\ --vimgrep
 nnoremap <Leader>z zR
 
 " make FZF grep through gitfiles
-command! -bang -nargs=* GGrep
+command! -bang -nargs=* GAg
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>). ' ":(exclude)yarn.lock"', 0,
   \   <bang>0 ? fzf#vim#with_preview({'options': '--no-hscroll'},'up:60%')
@@ -548,7 +548,7 @@ command! -bang -nargs=* GGrep
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>F :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <leader>/  :GGrep<cr>
+nnoremap <leader>/  :GAg<cr>
 nnoremap <leader>h  :History<cr>
 nnoremap <leader>H  :Helptags!<cr>
 
