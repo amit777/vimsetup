@@ -109,7 +109,7 @@ Plug 'skanehira/docker.vim'
 Plug 'will133/vim-dirdiff'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
 "Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
-"Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
+Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
 Plug 't9md/vim-choosewin'
 Plug 'camspiers/animate.vim'
@@ -120,6 +120,10 @@ call plug#end()
 :command -nargs=* Q q <args>
 :command -nargs=* Vsplit vsplit <args>
 :command -nargs=* Wq Wq <args>
+
+" launch floating terminal
+let g:floaterm_keymap_toggle = '<Leader>t'
+let g:floaterm_autoclose = 1
 
 let g:prettier#autoformat_require_pragma = 0
 
