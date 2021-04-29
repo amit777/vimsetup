@@ -279,9 +279,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code. (commented this out because I want nerd tree to
-" load with this
-"xmap <leader>f  <Plug>(coc-format-selected)
+" Formatting selected code.
+vmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
