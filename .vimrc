@@ -3,6 +3,9 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" R - replace mode
+" CTRL-D in command mode shows completions. eg:  :e<ctrl-d>
+" %s/thee/the/gc  (as confirmation on global change)
 " \e - open file explorer
 " \f \F \b \h - run :GFiles :Files, :Buffers :History
 "     tab/shift+tab select multiple files. ctrl+v ctrl+x open in splits
@@ -24,6 +27,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " \bd - delete buffer but keep layout
 " gd - go to definition of variable or function \f - go to file explorer s - open file in split mode
 " <ctrl+w>o - maximize/minimize windows
+" <c-w><c-w> switch windows
 " K - get documentation about a function/symbol
 " \l - toggle gutter line numbers
 " \g - show diagnostics pane
