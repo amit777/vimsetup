@@ -3,6 +3,7 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " ## CHEAT SHEET
+" " or ctrl+r - use vim peekaboo for registerers 
 " R - replace mode
 " CTRL-D in command mode shows completions. eg:  :e<ctrl-d>
 " %s/thee/the/gc  (as confirmation on global change)
@@ -110,6 +111,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " brew install vim -vd protobuf
 Plug 'puremourning/vimspector' " for debugger. F5 launches it
 Plug 'skanehira/docker.vim' 
+Plug 'junegunn/vim-peekaboo'  
 Plug 'will133/vim-dirdiff'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
 "Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
