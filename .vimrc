@@ -9,7 +9,10 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " :GV, :GV! shows git commits.  select them or range of them and "o" to see
 "   the diffs
 " " or ctrl+r - use vim peekaboo for registerers 
+" :Gblame show blame
 " R - replace mode
+" gqaj - mouse over json string. pretty print it jdaddy
+" gA  - show hex/decimal, binary of number under cursor
 " CTRL-D in command mode shows completions. eg:  :e<ctrl-d>
 " %s/thee/the/gc  (as confirmation on global change)
 " \e - open file explorer
@@ -126,6 +129,11 @@ Plug 't9md/vim-choosewin'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'junegunn/gv.vim'
+Plug 'glts/vim-magnum'
+Plug 'glts/vim-radical'
+Plug 'tpope/vim-jdaddy'
+"Plug 'junegunn/limelight.vim' " neat but not needed
+"Plug 'junegunn/vim-github-dashboard' " neat but not quite there
 call plug#end()
 
 " these are because i mistype :Q and :Vsplit and :Wq
