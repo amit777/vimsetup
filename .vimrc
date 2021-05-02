@@ -4,15 +4,18 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " :verbose map <key>  to see what's mapped there
 " 
 " ## CHEAT SHEET
-"
+" D - duplicate visual mode selected (custom map :vmap D y'>p)
+vmap D y'>p
 " # git stuff
 " :GV, :GV! shows git commits.  select them or range of them and "o" to see
 "   the diffs
 " " or ctrl+r - use vim peekaboo for registerers 
 " :Gblame show blame
 " R - replace mode
+" "qp  then "qyy - edit macro. edit it.
 " gqaj - mouse over json string. pretty print it jdaddy
 " gA  - show hex/decimal, binary of number under cursor
+" ga - show unicode character under cursor (characterize.vim)
 " CTRL-D in command mode shows completions. eg:  :e<ctrl-d>
 " %s/thee/the/gc  (as confirmation on global change)
 " \e - open file explorer
@@ -132,6 +135,8 @@ Plug 'junegunn/gv.vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-characterize'
+"Plug 'tpope/vim-afterimage' "doesn't seem to work right
 "Plug 'junegunn/limelight.vim' " neat but not needed
 "Plug 'junegunn/vim-github-dashboard' " neat but not quite there
 call plug#end()
