@@ -2,7 +2,12 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 "
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
+" 
 " ## CHEAT SHEET
+"
+" # git stuff
+" :GV, :GV! shows git commits.  select them or range of them and "o" to see
+"   the diffs
 " " or ctrl+r - use vim peekaboo for registerers 
 " R - replace mode
 " CTRL-D in command mode shows completions. eg:  :e<ctrl-d>
@@ -120,6 +125,7 @@ Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log fi
 Plug 't9md/vim-choosewin'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
+Plug 'junegunn/gv.vim'
 call plug#end()
 
 " these are because i mistype :Q and :Vsplit and :Wq
