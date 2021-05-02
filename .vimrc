@@ -6,6 +6,8 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 " ## CHEAT SHEET
 " D - duplicate visual mode selected (custom map :vmap D y'>p)
 vmap D y'>p
+" :Silent <unix command> (runs command without the Hit ENTER to continue)
+:command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
 " # git stuff
 " :GV, :GV! shows git commits.  select them or range of them and "o" to see
 "   the diffs
