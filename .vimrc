@@ -138,6 +138,7 @@ Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-characterize'
+Plug 'diepm/vim-rest-console'
 "Plug 'tpope/vim-afterimage' "doesn't seem to work right
 "Plug 'junegunn/limelight.vim' " neat but not needed
 "Plug 'junegunn/vim-github-dashboard' " neat but not quite there
