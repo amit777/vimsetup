@@ -99,8 +99,32 @@ let g:comfortable_motion_friction = 300.0
 let g:comfortable_motion_air_drag = 5.0
 
 "let g:hugefile_trigger_size " default 2mb (in MiB)
+      let g:SignatureMap = {
+        \ 'Leader'             :  "t",
+        \ 'PlaceNextMark'      :  "",
+        \ 'ToggleMarkAtLine'   :  "",
+        \ 'PurgeMarksAtLine'   :  "",
+        \ 'DeleteMark'         :  "",
+        \ 'PurgeMarks'         :  "",
+        \ 'PurgeMarkers'       :  "",
+        \ 'GotoNextLineAlpha'  :  "",
+        \ 'GotoPrevLineAlpha'  :  "",
+        \ 'GotoNextSpotAlpha'  :  "",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "",
+        \ 'GotoPrevSpotByPos'  :  "",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListBufferMarks'    :  "",
+        \ 'ListBufferMarkers'  :  ""
+        \ }
 
 call plug#begin('~/.vim/plugged')
+Plug 'kshenoy/vim-signature' "seems to cause delays in mark bar opening.
 Plug 'mhinz/vim-hugefile'
 Plug 'mhinz/vim-halo'
 Plug 'mhinz/vim-janah'
