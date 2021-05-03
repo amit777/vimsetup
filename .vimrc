@@ -93,7 +93,16 @@ set nocompatible
 set laststatus=2
 set encoding=UTF-8
 set number
+
+let g:comfortable_motion_interval = 1000.0 / 100
+let g:comfortable_motion_friction = 300.0
+let g:comfortable_motion_air_drag = 5.0
+
 call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-halo'
+Plug 'mhinz/vim-janah'
+Plug 'mhinz/vim-startify'
+Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
@@ -179,8 +188,10 @@ augroup MyColors
 augroup END
 
 set background=dark
-colorscheme tender
-let g:airline_theme='tender'
+"colorscheme tender
+colorscheme janah
+"let g:airline_theme='tender'
+let g:airline_theme='janah'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -488,6 +499,7 @@ let g:airline_filetype_overrides = {
 " Use preset argument to open it
 nnoremap <Leader>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+autocmd BufEnter * call halo#run({'intervals': [100,100,100], 'shape': 'line'})
 
 
 " fix for vim sessions not working with coc-explorer
