@@ -1,11 +1,6 @@
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
 " ditto, but more granularly (any may be omitted)
-let g:markbar_num_lines_context = {
-    \ 'around_local': 3,
-    \ 'around_file': 0,           
-    \ 'peekaboo_around_local': 3,
-    \ 'peekaboo_around_file': 3,
-    \ }
+let g:markbar_num_lines_context = { 'around_local': 5, 'around_file': 0, 'peekaboo_around_local': 5, 'peekaboo_around_file': 3 }
 
 set nofoldenable
 "
