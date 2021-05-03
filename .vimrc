@@ -1,4 +1,13 @@
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
+" ditto, but more granularly (any may be omitted)
+let g:markbar_num_lines_context = {
+    \ 'around_local': 3,
+    \ 'around_file': 0,           
+    \ 'peekaboo_around_local': 3,
+    \ 'peekaboo_around_file': 3,
+    \ }
+
+set nofoldenable
 "
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
@@ -14,6 +23,9 @@ vmap D y'>p
 " " or ctrl+r - use vim peekaboo for registerers 
 " :Gblame show blame
 " R - replace mode
+"  ` or ' - Toggle mark bar from Yilin-Yang/vim-markbar
+" m<Uppercase> - mark a location in single file. Kinda like global bookmark
+" m<lowercase> 'a - mark & go to location.  :'a:'bs/foo/bar.  you can use marks in range 
 " "qp  then "qyy - edit macro. edit it.
 " gqaj - mouse over json string. pretty print it jdaddy
 " gA  - show hex/decimal, binary of number under cursor
@@ -139,6 +151,7 @@ Plug 'glts/vim-radical'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-characterize'
 Plug 'diepm/vim-rest-console'
+Plug 'Yilin-Yang/vim-markbar'
 "Plug 'tpope/vim-afterimage' "doesn't seem to work right
 "Plug 'junegunn/limelight.vim' " neat but not needed
 "Plug 'junegunn/vim-github-dashboard' " neat but not quite there
@@ -583,4 +596,5 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <leader>/  :GAg<cr>
 nnoremap <leader>h  :History<cr>
 nnoremap <leader>H  :Helptags!<cr>
+
 
