@@ -98,7 +98,10 @@ let g:comfortable_motion_interval = 1000.0 / 100
 let g:comfortable_motion_friction = 300.0
 let g:comfortable_motion_air_drag = 5.0
 
+"let g:hugefile_trigger_size " default 2mb (in MiB)
+
 call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-hugefile'
 Plug 'mhinz/vim-halo'
 Plug 'mhinz/vim-janah'
 Plug 'mhinz/vim-startify'
