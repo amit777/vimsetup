@@ -94,8 +94,8 @@ set laststatus=2
 set encoding=UTF-8
 set number
 
-let g:comfortable_motion_interval = 1000.0 / 100
-let g:comfortable_motion_friction = 300.0
+let g:comfortable_motion_interval = 1000.0 / 400
+let g:comfortable_motion_friction = 0.0
 let g:comfortable_motion_air_drag = 5.0
 
 "let g:hugefile_trigger_size " default 2mb (in MiB)
