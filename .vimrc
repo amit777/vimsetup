@@ -9,6 +9,7 @@ set nofoldenable
 " 
 " ## CHEAT SHEET
 " D - duplicate visual mode selected (custom map :vmap D y'>p)
+" gf - go to file under cursor
 vmap D y'>p
 " :Silent <unix command> (runs command without the Hit ENTER to continue)
 :command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
@@ -218,7 +219,6 @@ set background=dark
 "colorscheme tender
 colorscheme janah
 "let g:airline_theme='tender'
-let g:airline_theme='janah'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
