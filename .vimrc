@@ -98,6 +98,7 @@ set number
 let g:comfortable_motion_interval = 1000.0 / 400
 let g:comfortable_motion_friction = 0.0
 let g:comfortable_motion_air_drag = 5.0
+let g:startify_custom_header = '' " remove funny cow"
 
 "let g:hugefile_trigger_size " default 2mb (in MiB)
       let g:SignatureMap = {
@@ -130,7 +131,7 @@ Plug 'mhinz/vim-hugefile'
 Plug 'mhinz/vim-halo'
 Plug 'mhinz/vim-janah'
 Plug 'mhinz/vim-startify'
-Plug 'yuttie/comfortable-motion.vim'
+"Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
@@ -218,7 +219,7 @@ augroup END
 set background=dark
 "colorscheme tender
 colorscheme janah
-"let g:airline_theme='tender'
+let g:airline_theme='tender'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
