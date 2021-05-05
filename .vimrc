@@ -19,14 +19,15 @@ set encoding=UTF-8
 set number
 
 let g:startify_custom_header = [
-                  \' ciw - change inner word                   |         zz or zt - recenter middle/top        |           <c+w><c+w> switch windows',
-                  \' cs<quote><paren> change surrounding       |         <c+w>o focus/unfocus window',
-                  \' ysiw` yank surround inner word backtick   |         \l turn off gutter',
-                  \' D - duplicate visual selection            |         <c+d> in :mode shows completions',
-                  \' gd gf - go defintion or file              |         \/ search gitfiles. or :Ag',
-                  \' m<UpperCase> global bookmark              |         K get documentation'  ,
-                  \' gqaj - pretty json under cursor                | - popup split selector',
-                  \' ga or gA - show unicode bin/hex under cursor   | \1-9 switch in buffer numbers or tabs',
+                  \' ciw - change inner word                        |  zz or zt - recenter middle/top',
+                  \'<c+w><c+w> switch windows                       |  ',
+                  \' cs<quote><paren> change surrounding            |  <c+w>o focus/unfocus window',
+                  \' ysiw` yank surround inner word backtick        |  \l turn off gutter',
+                  \' D - duplicate visual selection                 |  <c+d> in :mode shows completions',
+                  \' gd gf - go defintion or file                   |  \/ search gitfiles. or :Ag',
+                  \' m<UpperCase> global bookmark                   |  K get documentation'  ,
+                  \' gqaj - pretty json under cursor                |  - popup split selector',
+                  \' ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
                   \' %s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
                   \' \e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
                   \' \z or zR - unfold all',
@@ -157,6 +158,8 @@ let g:startify_enable_unsafe = 1
 
 call plug#begin('~/.vim/plugged')
 "Plug 'JRasmusBm/vim-peculiar' " multi line normal mode commands 
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'thinca/vim-visualstar'
 Plug 'kshenoy/vim-signature' "seems to cause delays in mark bar opening.
 Plug 'mhinz/vim-hugefile'
 Plug 'mhinz/vim-halo'
