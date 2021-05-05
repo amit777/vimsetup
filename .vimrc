@@ -19,12 +19,12 @@ set encoding=UTF-8
 set number
 
 let g:startify_custom_header = [
-                  \' zz or zt - recenter middle/top                 |  <c+w><c+w> switch windows',
-                  \' cs<quote><paren> change surrounding            |  <c+w>o focus/unfocus window',
-                  \' ysiw` yank surround inner word backtick        |  \l turn off gutter',
-                  \' D - duplicate visual selection                 | <c+d> in :mode shows completions',
-                  \' gd gf - go defintion to file under cursor      | \/ search gitfiles. or :Ag',
-                  \' m<UpperCase> kind of like global bookmark      | K get documentation'  ,
+                  \' ciw - change inner word                   |         zz or zt - recenter middle/top        |           <c+w><c+w> switch windows',
+                  \' cs<quote><paren> change surrounding       |         <c+w>o focus/unfocus window',
+                  \' ysiw` yank surround inner word backtick   |         \l turn off gutter',
+                  \' D - duplicate visual selection            |         <c+d> in :mode shows completions',
+                  \' gd gf - go defintion or file              |         \/ search gitfiles. or :Ag',
+                  \' m<UpperCase> global bookmark              |         K get documentation'  ,
                   \' gqaj - pretty json under cursor                | - popup split selector',
                   \' ga or gA - show unicode bin/hex under cursor   | \1-9 switch in buffer numbers or tabs',
                   \' %s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
