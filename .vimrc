@@ -3,11 +3,14 @@ let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  inste
 let g:markbar_num_lines_context = { 'around_local': 5, 'around_file': 0, 'peekaboo_around_local': 5, 'peekaboo_around_file': 3 }
 
 set nofoldenable
+set hlsearch
+set incsearch
 "
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
 " 
 " ## CHEAT SHEET
+" zz or zt - recenter to middle or top
 " D - duplicate visual mode selected (custom map :vmap D y'>p)
 " gf - go to file under cursor
 vmap D y'>p
@@ -43,7 +46,6 @@ vmap D y'>p
 " gcc, gc, gcap  - comment line, motion, paragraph tpope/vim-commentary plugin
 " \h  or :History - opens up window of recent files. fzf
 "     ctrl+x/v - opens in horizontal/vertical split
-" :Obsession <name> turn on session saving - open session with vim -S <name>
 " :ls - list buffers
 " bd/bo <num> - delete or open buffer num
 " \bd - delete buffer but keep layout
@@ -56,7 +58,6 @@ vmap D y'>p
 " q<letter> start record.  q again. stop.  @@ or  @<letter> replay recording
 " .  - redo last motion
 "
-" :Obsession <name/dir> record session and auto save. vim -S Session.vim to
 " cs'"  - changes surrounding single quotes to double
 " ysiw`  - yank surround innerword with backtick
 " \/ - Ag grep.  :.cc over file to open it in quickfix list
@@ -95,10 +96,36 @@ set laststatus=2
 set encoding=UTF-8
 set number
 
-let g:comfortable_motion_interval = 1000.0 / 400
-let g:comfortable_motion_friction = 0.0
-let g:comfortable_motion_air_drag = 5.0
-let g:startify_custom_header = '' " remove funny cow"
+let g:startify_session_persistence = 1
+
+let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   Recent']            },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
+
+let g:startify_custom_header = [
+\ ' zz or zt - recenter middle/top              |  <c+w><c+w> switch windows',
+\ ' cs<quote><paren> change surrounding         |  <c+w>o focus/unfocus window',
+\ ' ysiw` yank surround inner word backtick     |  \l turn off gutter',
+\ ' D - duplicate visual selection              | <c+d> in :mode shows completions',
+\ ' gd gf - go defintion to file under cursor   | \/ search gitfiles. or :Ag',
+\ ' m<UpperCase> kind of like global bookmark   | K get documentation'  ,
+\ ' gqaj - pretty json under cursor',
+\ ' ga or gA - show unicode bin/hex under cursor',
+\ ' %s/thee/thee/gc find and replace with confirm',
+\ ' \e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
+\ ' \z or zR - unfold all',
+\ ' gcc gc gcap - comment line, motion, paragraph',
+\]
+
+let g:startify_custom_footer = [
+            \ ':Gblame show line blames',
+            \ ':SudoWrite',
+            \]
+
+let g:startify_enable_unsafe = 1
 
 "let g:hugefile_trigger_size " default 2mb (in MiB)
       let g:SignatureMap = {
@@ -126,12 +153,12 @@ let g:startify_custom_header = '' " remove funny cow"
         \ }
 
 call plug#begin('~/.vim/plugged')
+"Plug 'JRasmusBm/vim-peculiar' " multi line normal mode commands 
 Plug 'kshenoy/vim-signature' "seems to cause delays in mark bar opening.
 Plug 'mhinz/vim-hugefile'
 Plug 'mhinz/vim-halo'
 Plug 'mhinz/vim-janah'
 Plug 'mhinz/vim-startify'
-"Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
@@ -146,7 +173,7 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'tpope/vim-obsession'  " Call :Obsess <optional file/dir name>
+"Plug 'tpope/vim-obsession'  " no longer needed. startify does sessions
 " Track the engine.
 Plug 'SirVer/ultisnips'
 Plug 'jacoborus/tender.vim'
@@ -203,8 +230,10 @@ let g:prettier#autoformat_require_pragma = 0
 
 " this function is for overriding the default theme colors
 " https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+" :hi Search  - gets the highlight setting
 function! MyHighlights() abort
     highlight CocHighlightText  ctermbg=17        guibg=#494949
+    highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
@@ -632,4 +661,15 @@ nnoremap <leader>/  :GAg<cr>
 nnoremap <leader>h  :History<cr>
 nnoremap <leader>H  :Helptags!<cr>
 
-
+" TODO: add this to make JS object multiline
+" "in after/ftplugin/javascript.vim
+" function! SingleToMulti() abort
+"     normal 0
+"     call search('[\[({]', 'c', line('.'))
+"     let char = getline('.')[col('.')-1]
+"     execute "normal! ci" . char . "\<CR>\<CR>\<Up>\<C-r>\""
+"     s/ *$/,
+"     s/, /,\r
+"     execute "normal =i" . char
+" endfunction
+" nnoremap <buffer> ,m :<C-u>silent call SingleToMulti()<CR>
