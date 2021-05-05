@@ -1,10 +1,48 @@
-let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
-" ditto, but more granularly (any may be omitted)
-let g:markbar_num_lines_context = { 'around_local': 5, 'around_file': 0, 'peekaboo_around_local': 5, 'peekaboo_around_file': 3 }
+let g:startify_custom_header = [
+\ ' zz or zt - recenter middle/top                 |  <c+w><c+w> switch windows',
+\ ' cs<quote><paren> change surrounding            |  <c+w>o focus/unfocus window',
+\ ' ysiw` yank surround inner word backtick        |  \l turn off gutter',
+\ ' D - duplicate visual selection                 | <c+d> in :mode shows completions',
+\ ' gd gf - go defintion to file under cursor      | \/ search gitfiles. or :Ag',
+\ ' m<UpperCase> kind of like global bookmark      | K get documentation'  ,
+\ ' gqaj - pretty json under cursor                | - popup split selector',
+\ ' ga or gA - show unicode bin/hex under cursor   | \1-9 switch in buffer numbers or tabs',
+\ ' %s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
+\ ' \e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
+\ ' \z or zR - unfold all',
+\ ' gcc gc gcap - comment line, motion, paragraph',
+\]
 
+let g:startify_custom_footer = [
+            \ ':Gblame show line blames  | :GV! - show git commits of current files. ',
+            \ ':SudoWrite',
+            \]
+
+syntax on
 set nofoldenable
 set hlsearch
 set incsearch
+set equalalways
+set timeoutlen=1000 " Set timeout length to 500 ms
+set ignorecase
+set smartcase
+set foldmethod=syntax
+filetype plugin indent on
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+set nocompatible
+set laststatus=2
+set encoding=UTF-8
+set number
+
+let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
+" ditto, but more granularly (any may be omitted)
+let g:markbar_num_lines_context = { 'around_local': 5, 'around_file': 0, 'peekaboo_around_local': 5, 'peekaboo_around_file': 3 }
+" make windows equal size after split
+
 "
 " https://github.com/romainl/idiomatic-vimrc
 " :verbose map <key>  to see what's mapped there
@@ -70,11 +108,6 @@ vmap D y'>p
 " 
 " F5 - start debugger.
 " ,di  - put cursor over variable and shows value
-syntax on
-set timeoutlen=1000 " Set timeout length to 500 ms
-set ignorecase
-set smartcase
-set foldmethod=syntax
 noremap <space><space> za
 "set foldmethod=indent
 " make space bar fold and unfold
@@ -85,16 +118,6 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
-filetype plugin indent on
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
-
-set nocompatible
-set laststatus=2
-set encoding=UTF-8
-set number
 
 let g:startify_session_persistence = 1
 
@@ -104,27 +127,7 @@ let g:startify_lists = [
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
       \ { 'type': 'commands',  'header': ['   Commands']       },
       \ ]
-
-let g:startify_custom_header = [
-\ ' zz or zt - recenter middle/top              |  <c+w><c+w> switch windows',
-\ ' cs<quote><paren> change surrounding         |  <c+w>o focus/unfocus window',
-\ ' ysiw` yank surround inner word backtick     |  \l turn off gutter',
-\ ' D - duplicate visual selection              | <c+d> in :mode shows completions',
-\ ' gd gf - go defintion to file under cursor   | \/ search gitfiles. or :Ag',
-\ ' m<UpperCase> kind of like global bookmark   | K get documentation'  ,
-\ ' gqaj - pretty json under cursor',
-\ ' ga or gA - show unicode bin/hex under cursor',
-\ ' %s/thee/thee/gc find and replace with confirm',
-\ ' \e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
-\ ' \z or zR - unfold all',
-\ ' gcc gc gcap - comment line, motion, paragraph',
-\]
-
-let g:startify_custom_footer = [
-            \ ':Gblame show line blames',
-            \ ':SudoWrite',
-            \]
-
+" makes startup faster supposedly
 let g:startify_enable_unsafe = 1
 
 "let g:hugefile_trigger_size " default 2mb (in MiB)
@@ -168,7 +171,7 @@ Plug 'ap/vim-css-color' " shows css colors as bg for #<colorcode>
 "Plug 'preservim/nerdtree' " file explorer
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
-Plug 'rakr/vim-one'  "like atom editor"
+"Plug 'rakr/vim-one'  "like atom editor"
 Plug 'vim-airline/vim-airline-themes' 
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
@@ -195,7 +198,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " nvm install v15.12.0
 " brew install vim -vd protobuf
 Plug 'puremourning/vimspector' " for debugger. F5 launches it
-Plug 'skanehira/docker.vim' 
+"Plug 'skanehira/docker.vim' 
 Plug 'junegunn/vim-peekaboo'  
 Plug 'will133/vim-dirdiff'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
@@ -203,7 +206,7 @@ Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanle
 Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
 Plug 't9md/vim-choosewin'
-Plug 'camspiers/animate.vim'
+"Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'junegunn/gv.vim'
 Plug 'glts/vim-magnum'
@@ -234,9 +237,9 @@ let g:prettier#autoformat_require_pragma = 0
 function! MyHighlights() abort
     highlight CocHighlightText  ctermbg=17        guibg=#494949
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
+    highlight Normal       ctermfg=253 guifg=#dadada guibg=#20201D
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
-    "highlight Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
 endfunction
 
@@ -556,7 +559,7 @@ let g:airline_filetype_overrides = {
 " Use preset argument to open it
 nnoremap <Leader>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-autocmd BufEnter * call halo#run({'intervals': [100,100,100], 'shape': 'line'})
+autocmd BufEnter * call halo#run({'intervals': [20,20,20,20,20], 'shape': 'line'})
 
 
 " fix for vim sessions not working with coc-explorer
@@ -638,7 +641,7 @@ let g:choosewin_overlay_enable = 1
 
 " window lenz functions
 let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
-let g:lens#animate = 0
+"let g:lens#animate = 0
 command! Lens :call lens#toggle() 
 
 set grepprg=ag\ --vimgrep
