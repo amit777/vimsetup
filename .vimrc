@@ -24,7 +24,7 @@ set lcs+=space:·,eol:⏎
 :let g:csv_end = 100
 
 let g:startify_custom_header = [
-                  \'ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
+                  \' "+p - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
                   \'<c+w><c+w> switch windows |  ',
                   \' cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \' ysiw` yank surround inner word backtick   |  \l turn off gutter',
@@ -175,16 +175,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
-Plug 'ap/vim-css-color' " shows css colors as bg for #<colorcode>
-"Plug 'preservim/nerdtree' " file explorer
+"Plug 'ap/vim-css-color' " replaced by coc-highlight
+"Plug 'preservim/nerdtree' " file explorer. replaced by coc-explorer
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
 "Plug 'rakr/vim-one'  "like atom editor"
 Plug 'vim-airline/vim-airline-themes' 
-"Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-"Plug 'tpope/vim-obsession'  " no longer needed. startify does sessions
+"Plug 'tpope/vim-obsession'  " replaced by startify sessions
 " Track the engine.
 Plug 'SirVer/ultisnips'
 Plug 'jacoborus/tender.vim'
@@ -195,7 +193,7 @@ Plug 'tpope/vim-surround' " easily surround stuff with quotes, parens and others
 Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
 Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle this
-Plug 'tpope/vim-eunuch' " :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
+Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
 Plug 'tpope/vim-dadbod' " database manipulation"
 Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'tpope/vim-vinegar' " better netrw. remove nerdtree? netrw is builtin and does scp  
@@ -283,6 +281,7 @@ let g:session_autosave = 'no'
 
 " install coc extensions instead of using :CocInstall on each one
 let g:coc_global_extensions = [
+      \ 'coc-highlight', 
       \ 'coc-tsserver', 
       \ 'coc-lists', 
       \ 'coc-html', 
