@@ -43,6 +43,7 @@ let g:startify_custom_footer = [
                   \ ':Gblame show line blames  | :GV! - show git commits of current files. ',
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
+                  \ 'vim -Nu NONE | '
                   \]
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
