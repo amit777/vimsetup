@@ -1,15 +1,16 @@
 {
   "prettier.requireConfig": true,
   "typescript.autoClosingTags": true, 
+  "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.currentFunctionSymbolAutoUpdate":true,
   "coc.preferences.jumpCommand": "vsplit",
+// coc-highlight
+  "coc.preferences.colorSupport": true,
 // disable tsserver warnings
   "javascript.suggestionActions.enabled": false,
 // default is 3. 8 makes faster indexing at cost of CPU
   "vimlsp.indexes.count": 8,
   "vimlsp.indexes.gap": 20,
-// coc-highlight
-  "coc.preferences.colorSupport": true,
 // explorer
   "explorer.quitOnOpen": false,
   "explorer.file.showHiddenFiles": true,

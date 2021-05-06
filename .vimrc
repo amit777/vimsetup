@@ -24,7 +24,7 @@ set lcs+=space:·,eol:⏎
 :let g:csv_end = 100
 
 let g:startify_custom_header = [
-                  \' "+p - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
+                  \' "+p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
                   \'<c+w><c+w> switch windows |  ',
                   \' cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \' ysiw` yank surround inner word backtick   |  \l turn off gutter',
@@ -43,7 +43,7 @@ let g:startify_custom_footer = [
                   \ ':Gblame show line blames  | :GV! - show git commits of current files. ',
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
-                  \ 'vim -Nu NONE | '
+                  \ 'vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate '
                   \]
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
@@ -162,7 +162,8 @@ let g:tagalong_additional_filetypes = ['svelte']
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
-Plug 'AndrewRadev/tagalong.vim'
+Plug 'semanser/vim-outdated-plugins'
+Plug 'AndrewRadev/tagalong.vim' " changes closing tags automatically
 Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'thinca/vim-visualstar'
