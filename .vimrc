@@ -17,16 +17,21 @@ set nocompatible
 set laststatus=2
 set encoding=UTF-8
 set number
+"set list
+set lcs+=space:·,eol:⏎
+
+:let g:csv_start = 1
+:let g:csv_end = 100
 
 let g:startify_custom_header = [
-                  \' ciw - change inner word                        |  zz or zt - recenter middle/top',
-                  \'<c+w><c+w> switch windows                       |  ',
-                  \' cs<quote><paren> change surrounding            |  <c+w>o focus/unfocus window',
-                  \' ysiw` yank surround inner word backtick        |  \l turn off gutter',
-                  \' D - duplicate visual selection                 |  <c+d> in :mode shows completions',
-                  \' gd gf - go defintion or file                   |  \/ search gitfiles. or :Ag',
-                  \' m<UpperCase> global bookmark                   |  K get documentation'  ,
-                  \' gqaj - pretty json under cursor                |  - popup split selector',
+                  \'ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
+                  \'<c+w><c+w> switch windows |  ',
+                  \' cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
+                  \' ysiw` yank surround inner word backtick   |  \l turn off gutter',
+                  \' D - duplicate visual selection  |  <c+d> in :mode shows completions',
+                  \' gd gf - go defintion or file  |  \/ search gitfiles. or :Ag',
+                  \' m<UpperCase> global bookmark  |  K get documentation'  ,
+                  \' gqaj - pretty json under cursor  |  - popup split selector',
                   \' ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
                   \' %s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
                   \' \e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
@@ -36,7 +41,8 @@ let g:startify_custom_header = [
 
 let g:startify_custom_footer = [
                   \ ':Gblame show line blames  | :GV! - show git commits of current files. ',
-                  \ ':SudoWrite',
+                  \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
+                  \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
                   \]
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
@@ -113,13 +119,6 @@ noremap <space><space> za
 "set foldmethod=indent
 " make space bar fold and unfold
 
-" Move around windows with Ctrl-j rather than Ctrl+W then j
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
-
-
 let g:startify_session_persistence = 1
 
 let g:startify_lists = [
@@ -131,8 +130,8 @@ let g:startify_lists = [
 " makes startup faster supposedly
 let g:startify_enable_unsafe = 1
 
-"let g:hugefile_trigger_size " default 2mb (in MiB)
-      let g:SignatureMap = {
+let g:hugefile_trigger_size = 2 " default 2mb (in MiB)
+let g:SignatureMap = {
         \ 'Leader'             :  "t",
         \ 'PlaceNextMark'      :  "",
         \ 'ToggleMarkAtLine'   :  "",
@@ -156,8 +155,14 @@ let g:startify_enable_unsafe = 1
         \ 'ListBufferMarkers'  :  ""
         \ }
 
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled = 0
+let g:tagalong_additional_filetypes = ['svelte']
+
 call plug#begin('~/.vim/plugged')
-"Plug 'JRasmusBm/vim-peculiar' " multi line normal mode commands 
+"Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'thinca/vim-visualstar'
 Plug 'kshenoy/vim-signature' "seems to cause delays in mark bar opening.
@@ -604,6 +609,7 @@ nnoremap <Leader>t9 9gt
 " Fix up code while typing
 augroup formatgroup
     autocmd!
+    autocmd FileType html setlocal foldmethod=indent
 "    autocmd! InsertLeave *.svelte  call CocAction('format')
 "    autocmd! InsertLeave *.js  call CocAction('format')
 "    autocmd! InsertLeave *.css  call CocAction('format')
