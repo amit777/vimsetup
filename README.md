@@ -43,6 +43,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 # run :PlugInstall or :PlugUpdate to install/update plugins periodically
 # run :CocUpdate
 
+
+# setup vim wiki
+mkdir ~/.vimwiki
+ln -s .vimwiki ~/git/vimsetup/vimwiki
+
 # install airblade
 
 mkdir -p ~/.vim/pack/airblade/start

@@ -3,7 +3,7 @@ set nofoldenable
 set hlsearch
 set incsearch
 set equalalways
-set timeoutlen=1000 " Set timeout length to 500 ms
+set timeoutlen=500 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
 set foldmethod=syntax
@@ -20,17 +20,19 @@ set number
 "set list
 set lcs+=space:·,eol:⏎
 
-:let g:csv_start = 1
-:let g:csv_end = 100
+let g:csv_start = 1
+let g:csv_end = 100
+
+let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \' "+p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
+                  \' "\wt \wd \ws | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
                   \'<c+w><c+w> switch windows |  ',
                   \' cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \' ysiw` yank surround inner word backtick   |  \l turn off gutter',
                   \' D - duplicate visual selection  |  <c+d> in :mode shows completions',
-                  \' gd gf - go defintion or file  |  \/ search gitfiles. or :Ag',
-                  \' m<UpperCase> global bookmark  |  K get documentation'  ,
+                  \' gd gf - go defintion or file  |  \/ :GitGrep or :Ag',
+                  \' m<UpperCase> global bookmark  |  K get doc'  ,
                   \' gqaj - pretty json under cursor  |  - popup split selector',
                   \' ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
                   \' %s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
@@ -43,6 +45,7 @@ let g:startify_custom_footer = [
                   \ ':Gblame show line blames  | :GV! - show git commits of current files. ',
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
+                  \ '\, emmet syntax https://docs.emmet.io/abbreviations/syntax/',
                   \ 'vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate '
                   \]
 
@@ -160,8 +163,14 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 0
 let g:tagalong_additional_filetypes = ['svelte']
 
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key = '\'
+autocmd FileType html,css,svelte EmmetInstall
+
+
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
+Plug 'mattn/emmet-vim'
 Plug 'semanser/vim-outdated-plugins'
 Plug 'AndrewRadev/tagalong.vim' " changes closing tags automatically
 Plug 'Yggdroot/indentLine'
@@ -173,7 +182,7 @@ Plug 'mhinz/vim-halo'
 Plug 'mhinz/vim-janah'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " explore yuki-yano/fzf-preview.vim as alternative
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
@@ -226,10 +235,12 @@ Plug 'Yilin-Yang/vim-markbar'
 "Plug 'tpope/vim-afterimage' "doesn't seem to work right
 "Plug 'junegunn/limelight.vim' " neat but not needed
 "Plug 'junegunn/vim-github-dashboard' " neat but not quite there
+Plug 'liuchengxu/vim-which-key' " https://github.com/liuchengxu/vim-which-key
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " these are because i mistype :Q and :Vsplit and :Wq
-:command -nargs=* Q q <args>
+:command -nargs=* Q q <args> "lbha"
 :command -nargs=* Vsplit vsplit <args>
 :command -nargs=* Wq Wq <args>
 
@@ -283,24 +294,29 @@ let g:session_autosave = 'no'
 
 " install coc extensions instead of using :CocInstall on each one
 let g:coc_global_extensions = [
-      \ 'coc-highlight', 
-      \ 'coc-tsserver', 
-      \ 'coc-lists', 
-      \ 'coc-html', 
       \ 'coc-clangd',
       \ 'coc-css', 
       \ 'coc-eslint', 
+      \ 'coc-diagnostic', 
+      \ 'coc-emmet', 
       \ 'coc-explorer', 
-      \ 'coc-json', 
       \ 'coc-git',
-      \ 'coc-prettier',
-      \ 'coc-swagger',
-      \ 'coc-python',
-      \ 'coc-snippets',
-      \ 'coc-svelte', 
-      \ 'coc-vimlsp',
-      \ 'coc-perl',
+      \ 'coc-highlight', 
+      \ 'coc-html', 
+      \ 'coc-html-css-support', 
+      \ 'coc-lists', 
+      \ 'coc-json', 
       \ 'coc-pairs',
+      \ 'coc-perl',
+      \ 'coc-prettier',
+      \ 'coc-python',
+      \ 'coc-swagger',
+      \ 'coc-sh',
+      \ 'coc-snippets',
+      \ 'coc-svg',
+      \ 'coc-svelte', 
+      \ 'coc-tsserver', 
+      \ 'coc-vimlsp',
       \ 'coc-yank',
 \ ]
 
@@ -686,3 +702,4 @@ nnoremap <leader>H  :Helptags!<cr>
 "     execute "normal =i" . char
 " endfunction
 " nnoremap <buffer> ,m :<C-u>silent call SingleToMulti()<CR>
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
