@@ -136,7 +136,7 @@ let g:startify_enable_unsafe = 1
 
 let g:hugefile_trigger_size = 2 " default 2mb (in MiB)
 let g:SignatureMap = {
-        \ 'Leader'             :  "t",
+        \ 'Leader'             :  "m",
         \ 'PlaceNextMark'      :  "",
         \ 'ToggleMarkAtLine'   :  "",
         \ 'PurgeMarksAtLine'   :  "",
