@@ -6,18 +6,23 @@ set equalalways
 set timeoutlen=500 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
+set wildmenu " display command tab commplete as menu"
+"set linebreak
 set foldmethod=syntax
 filetype plugin indent on
 set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set cursorline
+set noerrorbells
+set visualbell
 
 set nocompatible
 set laststatus=2
 set encoding=UTF-8
 set number
-"set list
+"set list - this will show the spaces etc
 set lcs+=space:·,eol:⏎
 
 let g:csv_start = 1
@@ -26,7 +31,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'\wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
+                  \'q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
                   \'<c+w><c+w> switch windows |  cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
                   \'D - duplicate visual selection  |  <c+d> in :mode shows completions',
@@ -41,7 +46,7 @@ let g:startify_custom_header = [
                   \]
 
 let g:startify_custom_footer = [
-                  \ ':Gblame :Gdiff  | :GV! - show git commits of current files. ',
+                  \ ':perldo | :Gblame :Gdiff  | :GV! - show git commits of current files. ',
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
                   \ '\, emmet syntax https://docs.emmet.io/abbreviations/syntax/',
@@ -254,6 +259,8 @@ let g:prettier#autoformat_require_pragma = 0
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
     highlight CocHighlightText  ctermbg=17        guibg=#494949
+    highlight CursorLine   term=underline ctermbg=236 guibg=#222222
+    highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Normal       ctermfg=253 guifg=#dadada guibg=#20201D
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
@@ -656,7 +663,7 @@ endif
 au BufRead * normal zR
 
 " set scroll offset context so search results don't appear at bottom
-:set scrolloff=5
+:set scrolloff=3
 " Get to next error.  also type @: to run last command
 command! -nargs=0 ErrNext                               :call CocAction('diagnosticNext')<CR>
 command! -nargs=0 ErrPrev                               :call CocAction('diagnosticPrevious')<CR>
