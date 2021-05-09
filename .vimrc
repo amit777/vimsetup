@@ -26,23 +26,22 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \' "\wt \wd \ws | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz or zt - recenter middle/top',
-                  \'<c+w><c+w> switch windows |  ',
-                  \' cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
-                  \' ysiw` yank surround inner word backtick   |  \l turn off gutter',
-                  \' D - duplicate visual selection  |  <c+d> in :mode shows completions',
-                  \' gd gf - go defintion or file  |  \/ :GitGrep or :Ag',
-                  \' m<UpperCase> global bookmark  |  K get doc'  ,
-                  \' gqaj - pretty json under cursor  |  - popup split selector',
-                  \' ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
-                  \' %s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
-                  \' \e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
-                  \' \z or zR - unfold all',
-                  \' gcc gc gcap - comment line, motion, paragraph',
+                  \'\wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
+                  \'<c+w><c+w> switch windows |  cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
+                  \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
+                  \'D - duplicate visual selection  |  <c+d> in :mode shows completions',
+                  \'gd gf - go defintion or file  |  \/ :GitGrep or :Ag',
+                  \'m<UpperCase> global bookmark  |  K get doc'  ,
+                  \'gqaj - pretty json under cursor  |  - popup split selector',
+                  \'ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
+                  \'%s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
+                  \'\e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
+                  \'\z or zR - unfold all',
+                  \'gcc gc gcap - comment line, motion, paragraph',
                   \]
 
 let g:startify_custom_footer = [
-                  \ ':Gblame show line blames  | :GV! - show git commits of current files. ',
+                  \ ':Gblame :Gdiff  | :GV! - show git commits of current files. ',
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
                   \ '\, emmet syntax https://docs.emmet.io/abbreviations/syntax/',
@@ -221,7 +220,7 @@ Plug 'will133/vim-dirdiff'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
 "Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
 Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
-Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
+"Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
 Plug 't9md/vim-choosewin'
 "Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
@@ -235,7 +234,7 @@ Plug 'Yilin-Yang/vim-markbar'
 "Plug 'tpope/vim-afterimage' "doesn't seem to work right
 "Plug 'junegunn/limelight.vim' " neat but not needed
 "Plug 'junegunn/vim-github-dashboard' " neat but not quite there
-Plug 'liuchengxu/vim-which-key' " https://github.com/liuchengxu/vim-which-key
+"Plug 'liuchengxu/vim-which-key' " https://github.com/liuchengxu/vim-which-key
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
@@ -583,6 +582,7 @@ let g:airline_filetype_overrides = {
 
 " Use preset argument to open it
 nnoremap <Leader>e :CocCommand explorer<CR>
+
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 autocmd BufEnter * call halo#run({'intervals': [20,20,20,20,20], 'shape': 'line'})
 
@@ -702,4 +702,4 @@ nnoremap <leader>H  :Helptags!<cr>
 "     execute "normal =i" . char
 " endfunction
 " nnoremap <buffer> ,m :<C-u>silent call SingleToMulti()<CR>
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
