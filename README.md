@@ -11,6 +11,8 @@ My Persoal Vim setup & notes
 - The default `<leader>` key is a backslash `\`
 - ftplugin = filetype plugins
 
+# perl language server (used by coc-perl)
+cpan Perl::LanguageServer
 
 # Cheat Sheet
 - :OpenSession <name> :SaveSession <name>  - open and close sessions 
