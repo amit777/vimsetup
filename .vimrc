@@ -31,7 +31,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
+                  \'daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
                   \'<c+w><c+w> switch windows | viw St - change surr tag | cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
                   \'D - duplicate visual selection  |  <c+d> in :mode shows completions',
@@ -50,7 +50,7 @@ let g:startify_custom_footer = [
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
                   \ '\, emmet syntax https://docs.emmet.io/abbreviations/syntax/',
-                  \ 'vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate '
+                  \ ':MacroEdit q | vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate '
                   \]
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
@@ -174,6 +174,7 @@ autocmd FileType html,css,svelte EmmetInstall
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
+Plug 'dohsimpson/vim-macroeditor'
 Plug 'mattn/emmet-vim'
 Plug 'semanser/vim-outdated-plugins'
 Plug 'AndrewRadev/tagalong.vim' " changes closing tags automatically
