@@ -31,7 +31,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
+                  \'X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
                   \'<c+w><c+w> switch windows | viw St - change surr tag | cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
                   \'D - duplicate visual selection  |  <c+d> in :mode shows completions',
@@ -192,7 +192,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
 "Plug 'ap/vim-css-color' " replaced by coc-highlight
 "Plug 'preservim/nerdtree' " file explorer. replaced by coc-explorer
-Plug 'wellle/targets.vim'
+Plug 'wellle/targets.vim' " more text objects 
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
 "Plug 'rakr/vim-one'  "like atom editor"
