@@ -261,11 +261,11 @@ let g:prettier#autoformat_require_pragma = 0
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
     highlight CocHighlightText  ctermbg=17        guibg=#494949
-    highlight CursorLine   term=underline ctermbg=236 guibg=#1b1b1b
+    highlight CursorLine   term=underline ctermbg=236 guibg=#1f1f18
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
-    highlight Normal       ctermfg=253 guifg=#dadada guibg=#27271D
-    "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
+    highlight Normal       ctermfg=253 guifg=#dadada guibg=#19190f
+    "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
 endfunction
@@ -718,3 +718,5 @@ function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)                                       
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
+
+nnoremap <Leader>c :call SynGroup()<cr>
