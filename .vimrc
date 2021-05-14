@@ -264,7 +264,7 @@ function! MyHighlights() abort
     highlight CursorLine   term=underline ctermbg=236 guibg=#1b1b1b
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
-    highlight Normal       ctermfg=253 guifg=#dadada guibg=#20201D
+    highlight Normal       ctermfg=253 guifg=#dadada guibg=#27271D
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
@@ -712,3 +712,9 @@ nnoremap <leader>H  :Helptags!<cr>
 " endfunction
 " nnoremap <buffer> ,m :<C-u>silent call SingleToMulti()<CR>
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+" get highlight group under cursor. :call SynGroup()
+function! SynGroup()                                                            
+    let l:s = synID(line('.'), col('.'), 1)                                       
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
