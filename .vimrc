@@ -171,12 +171,22 @@ let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key = '\'
 autocmd FileType html,css,svelte EmmetInstall
 
+if !exists("g:os")
+  if has("win64") || has("win32") || has("win16")
+    let g:os = "Windows"
+  else
+    let g:os = substitute(system('uname'), '\n', '', '')
+  endif
+endif
+
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
+if g:os != "Linux"
+  Plug 'semanser/vim-outdated-plugins'
+endif
 Plug 'dohsimpson/vim-macroeditor'
 Plug 'mattn/emmet-vim'
-Plug 'semanser/vim-outdated-plugins'
 Plug 'AndrewRadev/tagalong.vim' " changes closing tags automatically
 Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
