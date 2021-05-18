@@ -274,8 +274,8 @@ function! MyHighlights() abort
     highlight CocHighlightText  ctermbg=17        guibg=#494949
     highlight CursorLine   term=underline ctermbg=236 guibg=#2b2b2a
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
-    highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
+    highlight CursorLineNr   term=bold ctermfg=81 guifg=#e3e3e4
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
