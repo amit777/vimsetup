@@ -31,7 +31,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
+                  \'dsf, dif - del surr func | daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
                   \'<c+w><c+w> switch windows | viw St - change surr tag | cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
                   \'D - duplicate visual selection  |  <c+d> in :mode shows completions',
@@ -185,6 +185,7 @@ call plug#begin('~/.vim/plugged')
 if g:os != "Linux"
   Plug 'semanser/vim-outdated-plugins'
 endif
+Plug 'AndrewRadev/dsf.vim'
 Plug 'dohsimpson/vim-macroeditor'
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/tagalong.vim' " changes closing tags automatically
@@ -271,10 +272,10 @@ let g:prettier#autoformat_require_pragma = 0
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
     highlight CocHighlightText  ctermbg=17        guibg=#494949
-    highlight CursorLine   term=underline ctermbg=236 guibg=#1f1f18
+    highlight CursorLine   term=underline ctermbg=236 guibg=#2b2b2a
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
-    highlight Normal       ctermfg=253 guifg=#dadada guibg=#19190f
+    highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
@@ -730,3 +731,5 @@ function! SynGroup()
 endfun
 
 nnoremap <Leader>c :call SynGroup()<cr>
+" temporarily disable search highlighting 
+nnoremap <CR> :noh<CR><CR>
