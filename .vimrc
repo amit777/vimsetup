@@ -55,7 +55,7 @@ let g:startify_custom_footer = [
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
 " ditto, but more granularly (any may be omitted)
-let g:markbar_num_lines_context = { 'around_local': 5, 'around_file': 0, 'peekaboo_around_local': 5, 'peekaboo_around_file': 3 }
+let g:markbar_num_lines_context = { 'around_local': 1, 'around_file': 1, 'peekaboo_around_local': 1, 'peekaboo_around_file': 1 }
 " make windows equal size after split
 
 "
@@ -275,7 +275,7 @@ function! MyHighlights() abort
     highlight CursorLine   term=underline ctermbg=236 guibg=#2b2b2a
     highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
-    highlight CursorLineNr   term=bold ctermfg=81 guifg=#e3e3e4
+    highlight CursorLineNr   term=bold ctermfg=81 guifg=#73cef4
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
