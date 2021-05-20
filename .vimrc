@@ -182,6 +182,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
+Plug 'rhysd/clever-f.vim'
 if g:os != "Linux"
   Plug 'semanser/vim-outdated-plugins'
 endif
