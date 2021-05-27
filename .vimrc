@@ -179,6 +179,8 @@ if !exists("g:os")
   endif
 endif
 
+"let g:closetag_xhtml_filetypes = 'xhtml,jsx,svelte'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
@@ -255,6 +257,7 @@ Plug 'Yilin-Yang/vim-markbar'
 "Plug 'junegunn/vim-github-dashboard' " neat but not quite there
 "Plug 'liuchengxu/vim-which-key' " https://github.com/liuchengxu/vim-which-key
 Plug 'vimwiki/vimwiki'
+Plug 'alvan/vim-closetag'
 call plug#end()
 
 " these are because i mistype :Q and :Vsplit and :Wq
@@ -435,6 +438,7 @@ augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json,javascript,svelte setl formatexpr=CocAction('formatSelected')
+  autocmd FileType svelte let b:coc_pairs_disabled = ['<']
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
