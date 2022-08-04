@@ -31,7 +31,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'c-o+p c+r" - paste from insert mode',
+                  \'c-o+p c+r" - paste from insert mode. | <C-6> switch to prev edited buffer | :ls list buffers | :b<num or partialname> switch buff',
                   \'dsf, dif - del surr func | daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
                   \'<c+w><c+w> switch windows | viw St - change surr tag | cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
@@ -51,7 +51,8 @@ let g:startify_custom_footer = [
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
                   \ '\, emmet syntax https://docs.emmet.io/abbreviations/syntax/',
-                  \ ':MacroEdit q | vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate '
+                  \ ':MacroEdit q | vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate ',
+                  \ ' sudo chown -R amit ~/.config; sudo chown -R amit ~/.vim '
                   \]
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
@@ -747,3 +748,38 @@ nnoremap <CR> :noh<CR><CR>
 "   autocmd!
 "   autocmd FileType nerdtree,fern,startify,coc-explorer call glyph_palette#apply()
 " augroup end
+
+" coc completion stuff
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+
+  " Insert <tab> when previous text is space, refresh completion if not.
+  inoremap <silent><expr> <TAB>
+	\ coc#pum#visible() ? coc#pum#next(1):
+	\ <SID>check_back_space() ? "\<Tab>" :
+	\ coc#refresh()
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+  if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+  else
+    inoremap <silent><expr> <c-@> coc#refresh()
+  endif
+
+  inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+
+  inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable() ?
+    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  let g:coc_snippet_next = '<tab>'

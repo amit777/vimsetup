@@ -14,8 +14,8 @@
 // explorer
   "explorer.quitOnOpen": false,
   "explorer.file.showHiddenFiles": true,
-  "explorer.icon.enableVimDevicons": true,
   "explorer.icon.enableNerdfont": true,
+  "explorer.icon.source": "vim-devicons",
   "explorer.previewAction.onHover": false,
   "explorer.keyMappings.global": {
     "i": "previewOnHover:toggle:labeling",
@@ -100,5 +100,6 @@
     "]c": ["wait", "markNext:git"],
     "<<": "gitStage",
     ">>": "gitUnstage"
-  }
+  },
+  "svelte.enable-ts-plugin": true
 }
