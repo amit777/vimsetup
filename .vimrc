@@ -36,7 +36,7 @@ let g:startify_custom_header = [
                   \'<c+w><c+w> switch windows | viw St - change surr tag | cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
                   \'ysiw` yank surround inner word backtick   |  \l turn off gutter',
                   \'D - duplicate visual selection  |  <c+d> in :mode shows completions',
-                  \'gd gf - go defintion or file  |  \/ :GitGrep or :Ag',
+                  \'gd gf - go defintion or file  |  \s :GitGrep or :Ag',
                   \'m<UpperCase> global bookmark  |  K get doc'  ,
                   \'gqaj - pretty json under cursor  |  - popup split selector',
                   \'ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
@@ -115,7 +115,7 @@ vmap D y'>p
 "
 " cs'"  - changes surrounding single quotes to double
 " ysiw`  - yank surround innerword with backtick
-" \/ - Ag grep.  :.cc over file to open it in quickfix list
+" \s - Ag grep.  :.cc over file to open it in quickfix list
 "
 " ## snippets
 " <C-l> expands snippet
@@ -191,6 +191,8 @@ Plug 'rhysd/clever-f.vim'
 if g:os != "Linux"
   Plug 'semanser/vim-outdated-plugins'
 endif
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'amit777/srcery-vim'
 Plug 'matze/vim-move'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'AndrewRadev/dsf.vim'
@@ -295,10 +297,11 @@ augroup MyColors
     autocmd ColorScheme * call MyHighlights()
 augroup END
 
+set t_Co=256
 set background=dark
-"colorscheme tender
-colorscheme janah
-let g:airline_theme='tender'
+"colorscheme janah
+colorscheme srcery
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -716,7 +719,7 @@ command! -bang -nargs=* GAg
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>F :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <leader>/  :GAg<cr>
+nnoremap <leader>s  :GAg<cr>
 nnoremap <leader>h  :History<cr>
 nnoremap <leader>H  :Helptags!<cr>
 
@@ -783,3 +786,9 @@ nnoremap <CR> :noh<CR><CR>
   endfunction
 
   let g:coc_snippet_next = '<tab>'
+
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+  au Syntax * RainbowParenthesesLoadBraces
+
