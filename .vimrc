@@ -299,10 +299,12 @@ augroup END
 
 set t_Co=256
 set background=dark
-"colorscheme janah
-colorscheme srcery
+colorscheme janah
+"colorscheme srcery
+let g:airline_theme='solarized'
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
