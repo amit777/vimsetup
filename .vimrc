@@ -6,6 +6,7 @@ set equalalways
 set timeoutlen=500 " Set timeout length to 500 ms
 set ignorecase
 set smartcase
+set wildmode=longest,full " bash-like tab complete"
 set wildmenu " display command tab commplete as menu"
 "set linebreak
 set foldmethod=syntax
