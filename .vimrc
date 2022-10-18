@@ -41,7 +41,7 @@ let g:startify_custom_header = [
                   \'gqaj - pretty json under cursor  |  - popup split selector',
                   \'ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
                   \'%s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
-                  \'\e \f \F \h \b - explore :GFiles :Files :History :Buffer (c+x/v) split',
+                  \'\e \f \F \s \h \b - explore :GFiles :Files :GitGrep :History :Buffer (c+x/v) split',
                   \'\z or zR - unfold all',
                   \'gcc gc gcap - comment line, motion, paragraph',
                   \]
@@ -794,3 +794,5 @@ nnoremap <CR> :noh<CR><CR>
   au Syntax * RainbowParenthesesLoadSquare
   au Syntax * RainbowParenthesesLoadBraces
 
+  " ctrl+d opens/closes shell"
+noremap <C-d> :sh<cr>
