@@ -31,6 +31,8 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
+                  \'ctrl+e+(jkli) winresize | gcc gc gcap - comment line, motion, paragraph ',
+                  \'\e \f \F \s \h \b - explore :GFiles :Files :GitGrep :History :Buffer (c+x/v) split',
                   \'c-o+p c+r" - paste from insert mode. | <C-6> switch to prev edited buffer | :ls list buffers | :b<num or partialname> switch buff',
                   \'dsf, dif - del surr func | daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
                   \'<c+w><c+w> switch windows | viw St - change surr tag | cs<quote><paren> change surrounding  |  <c+w>o focus/unfocus window',
@@ -41,9 +43,7 @@ let g:startify_custom_header = [
                   \'gqaj - pretty json under cursor  |  - popup split selector',
                   \'ga or gA - show unicode bin/hex under cursor   |  \1-9 switch in buffer numbers or tabs',
                   \'%s/thee/thee/gc find and replace with confirm  | <space><space> fold code',
-                  \'\e \f \F \s \h \b - explore :GFiles :Files :GitGrep :History :Buffer (c+x/v) split',
                   \'\z or zR - unfold all',
-                  \'gcc gc gcap - comment line, motion, paragraph',
                   \]
 
 let g:startify_custom_footer = [
@@ -193,6 +193,7 @@ if g:os != "Linux"
 endif
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
+Plug 'simeji/winresizer'
 Plug 'matze/vim-move'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'AndrewRadev/dsf.vim'
@@ -251,7 +252,7 @@ Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
 "Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
 Plug 't9md/vim-choosewin'
 "Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
+"Plug 'camspiers/lens.vim' replaced by winresizer.
 Plug 'junegunn/gv.vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
@@ -701,9 +702,9 @@ nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
 " window lenz functions
-let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
+"let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
 "let g:lens#animate = 0
-command! Lens :call lens#toggle() 
+"command! Lens :call lens#toggle() 
 
 set grepprg=ag\ --vimgrep
 
