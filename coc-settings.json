@@ -4,6 +4,8 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.currentFunctionSymbolAutoUpdate":true,
   "coc.preferences.jumpCommand": "vsplit",
+// coc-eslint
+  "eslint.format.enable": true,
 // coc-highlight
   "coc.preferences.colorSupport": true,
 // disable tsserver warnings
