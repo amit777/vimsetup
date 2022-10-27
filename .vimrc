@@ -32,7 +32,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'ctrl+e+(jkli) winresize | gcc gc gcap - comment line, motion, paragraph ',
+                  \'ctrl+e+(jkli) winresize | ctr+d open/close shell | gcc gc gcap - comment line, motion, paragraph ',
                   \'\e \f \F \s \h \b - explore :GFiles :Files :GitGrep :History :Buffer (c+x/v) split',
                   \'c-o+p c+r" - paste from insert mode. | <C-6> switch to prev edited buffer | :ls list buffers | :b<num or partialname> switch buff',
                   \'dsf, dif - del surr func | daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
@@ -798,3 +798,5 @@ nnoremap <CR> :noh<CR><CR>
 
   " ctrl+d opens/closes shell"
 noremap <C-d> :sh<cr>
+
+set shm=filnxtToO
