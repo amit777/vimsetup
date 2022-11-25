@@ -156,7 +156,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
 
-alias dcl="docker container list"
+alias knownhosts="vi ~/.ssh/known_hosts"
 alias di="docker images"
 
 function dirdiff()
@@ -199,6 +199,9 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 source ~/.zshrc_private
+
+unsetopt inc_append_history
+unsetopt share_history
 
 #bindkey -v
 # TO update p10k

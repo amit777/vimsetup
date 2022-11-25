@@ -16,8 +16,8 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set cursorline
-set noerrorbells
 set visualbell
+set noerrorbells
 
 set nocompatible
 set laststatus=2
@@ -48,12 +48,13 @@ let g:startify_custom_header = [
                   \]
 
 let g:startify_custom_footer = [
-                  \ ':perldo | :Gblame :Gdiff  | :GV! - show git commits of current files. ',
+                  \ ':perldo | :G blame :Gdiff  | :GV! - show git commits of current files. ',
                   \ ':SudoWrite | set list - shows spaces and return | :IndentLinesToggle',
                   \ 'CSV stuff :[Un]ArrangeColumn :Sort[!]<column> :Header :DeleteCol <num>, :WhatCol',
                   \ '\, emmet syntax https://docs.emmet.io/abbreviations/syntax/',
                   \ ':MacroEdit q | vim -Nu NONE | :PlugUpdate :PlugUpgrade :CocUpdate ',
-                  \ ' sudo chown -R amit ~/.config; sudo chown -R amit ~/.vim '
+                  \ ' sudo chown -R amit ~/.config; sudo chown -R amit ~/.vim ',
+                  \ ':!tidy -mi -html -wrap 0 % -- fixes html from one line'
                   \]
 
 let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
@@ -76,7 +77,7 @@ vmap D y'>p
 " :GV, :GV! shows git commits.  select them or range of them and "o" to see
 "   the diffs
 " " or ctrl+r - use vim peekaboo for registerers 
-" :Gblame show blame
+" :G blame show blame
 " R - replace mode
 "  ` or ' - Toggle mark bar from Yilin-Yang/vim-markbar
 " m<Uppercase> - mark a location in single file. Kinda like global bookmark
@@ -214,12 +215,12 @@ Plug 'junegunn/fzf.vim' " explore yuki-yano/fzf-preview.vim as alternative
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
+Plug 'tpope/vim-rhubarb' " gbrowse
 "Plug 'ap/vim-css-color' " replaced by coc-highlight
 "Plug 'preservim/nerdtree' " file explorer. replaced by coc-explorer
 Plug 'wellle/targets.vim' " more text objects 
 Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
-"Plug 'rakr/vim-one'  "like atom editor"
 Plug 'vim-airline/vim-airline-themes' 
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
 "Plug 'tpope/vim-obsession'  " replaced by startify sessions
@@ -236,7 +237,6 @@ Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle 
 Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
 Plug 'tpope/vim-dadbod' " database manipulation"
 Plug 'kristijanhusak/vim-dadbod-ui'
-" Plug 'tpope/vim-vinegar' " better netrw. remove nerdtree? netrw is builtin and does scp  
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
 " pyenv install 3.9.2
@@ -247,13 +247,8 @@ Plug 'puremourning/vimspector' " for debugger. F5 launches it
 "Plug 'skanehira/docker.vim' 
 Plug 'junegunn/vim-peekaboo'  
 Plug 'will133/vim-dirdiff'
-Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte". html indent sucks
-"Plug 'burner/vim-svelte' " this kinda stinks. just leaving note so avoid it
-Plug 'voldikss/vim-floaterm' "Floating terminal.  will play with it later
-"Plug 'powerman/vim-plugin-AnsiEsc' "add ability to render ansi colors for log files etc
+Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte html indent sucks
 Plug 't9md/vim-choosewin'
-"Plug 'camspiers/animate.vim'
-"Plug 'camspiers/lens.vim' replaced by winresizer.
 Plug 'junegunn/gv.vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
@@ -261,10 +256,7 @@ Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-characterize'
 Plug 'diepm/vim-rest-console'
 Plug 'Yilin-Yang/vim-markbar'
-"Plug 'tpope/vim-afterimage' "doesn't seem to work right
-"Plug 'junegunn/limelight.vim' " neat but not needed
-"Plug 'junegunn/vim-github-dashboard' " neat but not quite there
-"Plug 'liuchengxu/vim-which-key' " https://github.com/liuchengxu/vim-which-key
+Plug 'lfilho/cosco.vim' " automatic command and semicolon
 Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
 call plug#end()
@@ -272,7 +264,10 @@ call plug#end()
 " these are because i mistype :Q and :Vsplit and :Wq
 :command -nargs=* Q q <args> "lbha"
 :command -nargs=* Vsplit vsplit <args>
-:command -nargs=* Wq Wq <args>
+:command -nargs=* Wq wq <args>
+:command -nargs=* Gbrowse GBrowse <args>
+:command -nargs=* Gblame G blame --abbrev=5 --date=relative <args>
+:command -nargs=* Blame G blame --abbrev=5 --date=relative <args>
 
 " launch floating terminal
 let g:floaterm_keymap_toggle = '<Leader>t'
@@ -800,3 +795,6 @@ nnoremap <CR> :noh<CR><CR>
 noremap <C-d> :sh<cr>
 
 set shm=filnxtToO
+
+autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
