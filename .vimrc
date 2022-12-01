@@ -402,11 +402,6 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -770,7 +765,9 @@ nnoremap <CR> :noh<CR><CR>
     inoremap <silent><expr> <c-@> coc#refresh()
   endif
 
-  inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+  "commented this out because it makes autocompletion happen when you hit
+  "enter
+  "inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 
   inoremap <silent><expr> <TAB>
     \ coc#pum#visible() ? coc#_select_confirm() :
