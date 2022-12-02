@@ -19,7 +19,8 @@ set cursorline
 set visualbell
 set noerrorbells
 "set clipboard=unnamed
-vnoremap Y "*y
+" this use to be vnoremap to *. doesn't work on linux with xclip
+vnoremap Y "+y 
 set mouse=nvi
 set mousemodel=popup
 
