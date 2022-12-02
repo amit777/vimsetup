@@ -1,0 +1,16 @@
+Host github.com
+  User git
+  HostName github.com
+  IdentityFile ~/.ssh/github.id_rsa
+  IdentitiesOnly yes
+
+Host *
+  ServerAliveInterval 60
+  ServerAliveCountMax 2
+  ControlMaster auto
+  ControlPath /tmp/controlmaster-%r@%h:%p
+  ControlPersist 600
+  ForwardX11Trusted yes
+  ForwardX11 yes
+  #  Compression yes  # supposedly slows things down on fast networks. don't enable
+  User <username>
