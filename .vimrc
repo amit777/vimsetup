@@ -18,6 +18,10 @@ set expandtab
 set cursorline
 set visualbell
 set noerrorbells
+"set clipboard=unnamed
+vnoremap Y "*y
+set mouse=nvi
+set mousemodel=popup
 
 set nocompatible
 set laststatus=2
@@ -57,7 +61,6 @@ let g:startify_custom_footer = [
                   \ ':!tidy -mi -html -wrap 0 % -- fixes html from one line'
                   \]
 
-let g:polyglot_disabled = ['svelte'] "using  leafOfTree/vim-svelte-plugin  instead
 " ditto, but more granularly (any may be omitted)
 let g:markbar_num_lines_context = { 'around_local': 1, 'around_file': 1, 'peekaboo_around_local': 1, 'peekaboo_around_file': 1 }
 " make windows equal size after split
@@ -189,10 +192,11 @@ let g:move_key_modifier = 'C'
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
-Plug 'rhysd/clever-f.vim'
 if g:os != "Linux"
+  Plug 'rhysd/clever-f.vim'
   Plug 'semanser/vim-outdated-plugins'
 endif
+"Plug 'dstein64/vim-startuptime'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
 Plug 'simeji/winresizer'
@@ -207,43 +211,41 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'thinca/vim-visualstar'
 Plug 'kshenoy/vim-signature' "seems to cause delays in mark bar opening.
 Plug 'mhinz/vim-hugefile'
-Plug 'mhinz/vim-halo'
+"Plug 'mhinz/vim-halo'
 Plug 'mhinz/vim-janah'
 Plug 'mhinz/vim-startify'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
 Plug 'junegunn/fzf.vim' " explore yuki-yano/fzf-preview.vim as alternative
+"Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
-Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'tpope/vim-rhubarb' " gbrowse
 "Plug 'ap/vim-css-color' " replaced by coc-highlight
 "Plug 'preservim/nerdtree' " file explorer. replaced by coc-explorer
 Plug 'wellle/targets.vim' " more text objects 
-Plug 'sheerun/vim-polyglot'  " syntax highlighting 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
 Plug 'vim-airline/vim-airline-themes' 
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
 "Plug 'tpope/vim-obsession'  " replaced by startify sessions
 " Track the engine.
-Plug 'SirVer/ultisnips'
-Plug 'jacoborus/tender.vim'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'  " ctrl-l completes 
+"Plug 'SirVer/ultisnips'
+"Plug 'jacoborus/tender.vim'
 Plug 'tomtom/tcomment_vim'  " the best code commenting tool. gcc toggles
 Plug 'tpope/vim-surround' " easily surround stuff with quotes, parens and others
-Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
+"Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
 Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle this
 Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
-Plug 'tpope/vim-dadbod' " database manipulation"
-Plug 'kristijanhusak/vim-dadbod-ui'
+"Plug 'tpope/vim-dadbod' " database manipulation"
+"Plug 'kristijanhusak/vim-dadbod-ui'
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuff
 " pyenv install 3.9.2
 " pyenv global 3.9.2
 " nvm install v15.12.0
 " brew install vim -vd protobuf
-Plug 'puremourning/vimspector' " for debugger. F5 launches it
+"Plug 'puremourning/vimspector' " for debugger. F5 launches it
 "Plug 'skanehira/docker.vim' 
 Plug 'junegunn/vim-peekaboo'  
 Plug 'will133/vim-dirdiff'
@@ -260,6 +262,8 @@ Plug 'lfilho/cosco.vim' " automatic command and semicolon
 Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
 call plug#end()
+
+let g:markbar_persist_mark_names = v:false
 
 " these are because i mistype :Q and :Vsplit and :Wq
 :command -nargs=* Q q <args> "lbha"
@@ -330,6 +334,7 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic', 
       \ 'coc-emmet', 
       \ 'coc-explorer', 
+      \ 'coc-fzf-preview', 
       \ 'coc-git',
       \ 'coc-highlight', 
       \ 'coc-html', 
@@ -342,7 +347,6 @@ let g:coc_global_extensions = [
       \ 'coc-python',
       \ 'coc-swagger',
       \ 'coc-sh',
-      \ 'coc-snippets',
       \ 'coc-svg',
       \ 'coc-svelte', 
       \ 'coc-tsserver', 
@@ -535,55 +539,51 @@ nnoremap <silent> <C-w>o :call win#zoom_toggle()<CR>
 nnoremap <silent> <leader>l :call win#toggle_gutter()<CR>
 nnoremap <silent> <leader>g :CocDiagnostics<CR>
 
-" expand snippet from coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
 " this does the same thing as above. <tab> is default but it messes with Coc
 " variable completion
 let g:UltiSnipsExpandTrigger="<C-l>"
 
-
-" setup vimspector
-" :VimspectorUpdate to update gadgets
-let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
-" https://github.com/puremourning/vimspector#human-mode see key bindings
-let g:vimspector_enable_mappings='HUMAN'
-" customize the UI to add Fkeys
-function! s:CustomiseWinBar()
-  call win_gotoid( g:vimspector_session_windows.code )
-  " Clear the existing WinBar created by Vimspector
-  nunmenu WinBar
-  nnoremenu WinBar.■\ Stop\(F3\) :call vimspector#Stop( { 'interactive': v:false } )<CR>
-  nnoremenu WinBar.▶\ Cont\(F5\) :call vimspector#Continue()<CR>
-  nnoremenu WinBar.▷\ Pause\(F6\) :call vimspector#Pause()<CR>
-  nnoremenu WinBar.↷\ Next\(F10\) :call vimspector#StepOver()<CR>
-  nnoremenu WinBar.→\ Step\(F11\) :call vimspector#StepInto()<CR>
-  nnoremenu WinBar.←\ Out\(F12\) :call vimspector#StepOut()<CR>
-  nnoremenu WinBar.⟲:\(F4\) :call vimspector#Restart()<CR>
-  nnoremenu WinBar.✕ :call vimspector#Reset( { 'interactive': v:false } )<CR>
-  " Cretae our own WinBar
-endfunction
-
-augroup MyVimspectorUICustomistaion
-  autocmd!
-  autocmd User VimspectorUICreated call s:CustomiseWinBar()
-augroup END
-
-"set mouse=a  " amit777 commented out this to focus on using keybindings.
-"mouse stuff was causing copy/paste issues
-set noequalalways
-let mapleader = '\' "this was comma by default.  changing back to \
-let maplocalleader = ","  " this was \<Space>.  changing to ,
-let &runtimepath = &runtimepath . ',' . g:vimspector_test_plugin_path
-
-" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-" for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
-
-"You may also wish to add mappings for up/down the stack, for example:
-nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
-nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+"
+" " setup vimspector
+" " :VimspectorUpdate to update gadgets
+" let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
+" " https://github.com/puremourning/vimspector#human-mode see key bindings
+" let g:vimspector_enable_mappings='HUMAN'
+" " customize the UI to add Fkeys
+" function! s:CustomiseWinBar()
+"   call win_gotoid( g:vimspector_session_windows.code )
+"   " Clear the existing WinBar created by Vimspector
+"   nunmenu WinBar
+"   nnoremenu WinBar.■\ Stop\(F3\) :call vimspector#Stop( { 'interactive': v:false } )<CR>
+"   nnoremenu WinBar.▶\ Cont\(F5\) :call vimspector#Continue()<CR>
+"   nnoremenu WinBar.▷\ Pause\(F6\) :call vimspector#Pause()<CR>
+"   nnoremenu WinBar.↷\ Next\(F10\) :call vimspector#StepOver()<CR>
+"   nnoremenu WinBar.→\ Step\(F11\) :call vimspector#StepInto()<CR>
+"   nnoremenu WinBar.←\ Out\(F12\) :call vimspector#StepOut()<CR>
+"   nnoremenu WinBar.⟲:\(F4\) :call vimspector#Restart()<CR>
+"   nnoremenu WinBar.✕ :call vimspector#Reset( { 'interactive': v:false } )<CR>
+"   " Cretae our own WinBar
+" endfunction
+"
+" augroup MyVimspectorUICustomistaion
+"   autocmd!
+"   autocmd User VimspectorUICreated call s:CustomiseWinBar()
+" augroup END
+"
+" set noequalalways
+" let mapleader = '\' "this was comma by default.  changing back to \
+" let maplocalleader = ","  " this was \<Space>.  changing to ,
+" let &runtimepath = &runtimepath . ',' . g:vimspector_test_plugin_path
+"
+" " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" " for normal mode - the word under the cursor
+" nmap <Leader>di <Plug>VimspectorBalloonEval
+" " for visual mode, the visually selected text
+" xmap <Leader>di <Plug>VimspectorBalloonEval
+"
+" "You may also wish to add mappings for up/down the stack, for example:
+" nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+" nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
 " add tcomment_vim for svelte
 let g:tcomment#filetype#guess_svelte = 'html'
@@ -611,7 +611,7 @@ let g:airline_filetype_overrides = {
 nnoremap <Leader>e :CocCommand explorer<CR>
 
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-autocmd BufEnter * call halo#run({'intervals': [20,20,20,20,20], 'shape': 'line'})
+"autocmd BufEnter * call halo#run({'intervals': [20,20,20,20,20], 'shape': 'line'})
 
 
 " fix for vim sessions not working with coc-explorer
@@ -717,6 +717,25 @@ nnoremap <leader>s  :GAg<cr>
 nnoremap <leader>h  :History<cr>
 nnoremap <leader>H  :Helptags!<cr>
 
+" nmap <Leader>f [fzf-p]
+" xmap <Leader>f [fzf-p]
+"
+" nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+" nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+" nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+" nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+" nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+" nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+" nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+" nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+" nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+" nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+" nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+" xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+" nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+" nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+" nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
+
 " TODO: add this to make JS object multiline
 " "in after/ftplugin/javascript.vim
 " function! SingleToMulti() abort
@@ -780,8 +799,6 @@ nnoremap <CR> :noh<CR><CR>
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
-
-  let g:coc_snippet_next = '<tab>'
 
   au VimEnter * RainbowParenthesesToggle
   au Syntax * RainbowParenthesesLoadRound
