@@ -1,6 +1,11 @@
 # vimsetup
 My Persoal Vim setup & notes
 
+# x11 stuff
+```
+brew install --cask xquartz
+```
+
 # Philosophies
 - Never :q quite. Use buffers
 - Tabs are just workspaces. Don't think of them as files

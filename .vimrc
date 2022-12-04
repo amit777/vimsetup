@@ -31,6 +31,8 @@ set number
 "set list - this will show the spaces etc
 set lcs+=space:·,eol:⏎
 
+set guifont=MesloLGS\ NF:h12
+set guioptions +=!k
 let g:csv_start = 1
 let g:csv_end = 100
 
@@ -234,7 +236,7 @@ Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
 "Plug 'jacoborus/tender.vim'
 Plug 'tomtom/tcomment_vim'  " the best code commenting tool. gcc toggles
 Plug 'tpope/vim-surround' " easily surround stuff with quotes, parens and others
-"Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
+Plug 'airblade/vim-rooter' " changes CWD automatically based on project clues
 Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'mbbill/undotree' " the best undo/redo visualization. I mapped U to toggle this
 Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chmod
@@ -259,7 +261,6 @@ Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-characterize'
 Plug 'diepm/vim-rest-console'
 Plug 'Yilin-Yang/vim-markbar'
-Plug 'lfilho/cosco.vim' " automatic command and semicolon
 Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
 call plug#end()
@@ -811,5 +812,10 @@ noremap <C-d> :sh<cr>
 
 set shm=filnxtToO
 
-autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
-autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+" prevent changing lines when clicking into window
+augroup NO_CURSOR_MOVE_ON_FOCUS
+  au!
+  au FocusLost * let g:oldmouse=&mouse | set mouse=
+  au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
+augroup END
+
