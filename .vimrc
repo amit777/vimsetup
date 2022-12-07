@@ -31,8 +31,11 @@ set number
 "set list - this will show the spaces etc
 set lcs+=space:·,eol:⏎
 
-set guifont=MesloLGS\ NF:h12
-set guioptions +=!k
+set guifont=DroidSansMono\ Nerd\ Font:h14
+"set guifont=FantasqueSansMono\ Nerd\ Font:h16
+" this options makes flickering happen in macvim
+" use :!sh instead of :sh
+"set guioptions+=! 
 let g:csv_start = 1
 let g:csv_end = 100
 
@@ -64,8 +67,8 @@ let g:startify_custom_footer = [
                   \ ':!tidy -mi -html -wrap 0 % -- fixes html from one line'
                   \]
 
-" ditto, but more granularly (any may be omitted)
 let g:markbar_num_lines_context = { 'around_local': 1, 'around_file': 1, 'peekaboo_around_local': 1, 'peekaboo_around_file': 1 }
+" ditto, but more granularly (any may be omitted)
 " make windows equal size after split
 
 "
@@ -137,7 +140,7 @@ noremap <space><space> za
 "set foldmethod=indent
 " make space bar fold and unfold
 
-let g:startify_session_persistence = 1
+let g:startify_session_persistence = 0
 
 let g:startify_lists = [
       \ { 'type': 'files',     'header': ['   Recent']            },
@@ -173,8 +176,6 @@ let g:SignatureMap = {
         \ 'ListBufferMarkers'  :  ""
         \ }
 
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_enabled = 0
 let g:tagalong_additional_filetypes = ['svelte']
 
 let g:user_emmet_install_global = 0
@@ -204,13 +205,12 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
 Plug 'simeji/winresizer'
 Plug 'matze/vim-move'
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'AndrewRadev/dsf.vim'
+Plug 'lambdalisue/glyph-palette.vim' " sets up colors on nerdfonts
+Plug 'AndrewRadev/dsf.vim' " delete surrouning function. note used
 Plug 'dohsimpson/vim-macroeditor'
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/tagalong.vim' " changes closing tags automatically
-Plug 'Yggdroot/indentLine'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+"Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'thinca/vim-visualstar'
 Plug 'kshenoy/vim-signature' "seems to cause delays in mark bar opening.
 Plug 'mhinz/vim-hugefile'
@@ -220,12 +220,13 @@ Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "coding tools like intellisense
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " find files and grep contents fast. possible overlap with coc-explorer/coc-lists
 Plug 'junegunn/fzf.vim' " explore yuki-yano/fzf-preview.vim as alternative
-"Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
+"Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'rbgrouleff/bclose.vim' " close a buffer with \bd but don't close the split
 Plug 'tpope/vim-fugitive' " git integration
-Plug 'tpope/vim-rhubarb' " gbrowse
+"Plug 'tpope/vim-rhubarb' " gbrowse
 "Plug 'ap/vim-css-color' " replaced by coc-highlight
 "Plug 'preservim/nerdtree' " file explorer. replaced by coc-explorer
+"Plug 'sheerun/vim-polyglot' " syntax detection.  do not use. it slows everything
 Plug 'wellle/targets.vim' " more text objects 
 Plug 'vim-airline/vim-airline' " pretty statusline and tabline
 Plug 'vim-airline/vim-airline-themes' 
@@ -251,10 +252,10 @@ Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chm
 "Plug 'puremourning/vimspector' " for debugger. F5 launches it
 "Plug 'skanehira/docker.vim' 
 Plug 'junegunn/vim-peekaboo'  
-Plug 'will133/vim-dirdiff'
+"Plug 'will133/vim-dirdiff'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte html indent sucks
 Plug 't9md/vim-choosewin'
-Plug 'junegunn/gv.vim'
+"Plug 'junegunn/gv.vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'tpope/vim-jdaddy'
@@ -325,9 +326,6 @@ let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linen
 "let g:svelte_indent_script = 0
 "let g:svelte_indent_style = 0
 
-"let NERDTreeShowBookmarks=1
-let g:session_autosave = 'no'
-
 " install coc extensions instead of using :CocInstall on each one
 let g:coc_global_extensions = [
       \ 'coc-clangd',
@@ -336,7 +334,7 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic', 
       \ 'coc-emmet', 
       \ 'coc-explorer', 
-      \ 'coc-fzf-preview', 
+      \ 'coc-fzf-preview',
       \ 'coc-git',
       \ 'coc-highlight', 
       \ 'coc-html', 
@@ -422,17 +420,18 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   elseif (coc#rpc#ready())
+"     call CocActionAsync('doHover')
+"   else
+"     execute '!' . &keywordprg . " " . expand('<cword>')
+"   endif
+" endfunction
 
 " Highlight the symbol and its references when holding the cursor.
+
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
@@ -713,9 +712,11 @@ command! -bang -nargs=* GAg
   \   <bang>0)
 
 nnoremap <Leader>f :GFiles<CR>
+"nnoremap <Leader>f :CocCommand fzf-preview.GitFiles<CR>
 nnoremap <Leader>F :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <leader>s  :GAg<cr>
+"nnoremap <leader>s  :CocCommand fzf-preview.ProjectGrep .<cr>
 nnoremap <leader>h  :History<cr>
 nnoremap <leader>H  :Helptags!<cr>
 
@@ -762,10 +763,10 @@ nnoremap <Leader>c :call SynGroup()<cr>
 " temporarily disable search highlighting 
 nnoremap <CR> :noh<CR><CR>
 
-" augroup my-glyph-palette
-"   autocmd!
-"   autocmd FileType nerdtree,fern,startify,coc-explorer call glyph_palette#apply()
-" augroup end
+augroup my-glyph-palette
+  autocmd!
+  autocmd FileType nerdtree,fern,startify,coc-explorer call glyph_palette#apply()
+augroup end
 
 " coc completion stuff
   function! s:check_back_space() abort
@@ -819,3 +820,15 @@ augroup NO_CURSOR_MOVE_ON_FOCUS
   au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
 augroup END
 
+au BufNewFile,BufRead */etc/hosts		setf hostconf
+
+
+" augroup fzf_preview
+"   autocmd!
+"   autocmd User fzf_preview#rpc#initialized call s:fzf_preview_settings() " fzf_preview#remote#initialized or fzf_preview#coc#initialized
+" augroup END
+"
+" function! s:fzf_preview_settings() abort
+"   let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
+"   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
+" endfunction

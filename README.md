@@ -4,6 +4,18 @@ My Persoal Vim setup & notes
 # x11 stuff
 ```
 brew install --cask xquartz
+
+```
+
+# font stuff
+```
+# preferred:
+DroidSansMono Nerd Font
+
+# this may not work. may just download from nerdfonts.com
+brew tap homebrew/cask-fonts
+brew install --cask font-fantasque-sans-mono
+
 ```
 
 # Philosophies
