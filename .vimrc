@@ -264,9 +264,17 @@ Plug 'diepm/vim-rest-console'
 Plug 'Yilin-Yang/vim-markbar'
 Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
+Plug 'qpkorr/vim-renamer'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'rakr/vim-one'
 call plug#end()
 
 let g:markbar_persist_mark_names = v:false
+
+" renamer shows warning about this variable.  but can't seem to define it
+"let b:RenamerShowHiddenEnabled = v:true
+let g:RenamerSupportColonWToRename = v:true
+nmap <Leader>r <Plug>RenamerStart
 
 " these are because i mistype :Q and :Vsplit and :Wq
 :command -nargs=* Q q <args> "lbha"
@@ -303,9 +311,10 @@ augroup END
 
 set t_Co=256
 set background=dark
-colorscheme janah
-"colorscheme srcery
-let g:airline_theme='solarized'
+"colorscheme janah
+colorscheme one
+"let g:airline_theme='solarized'
+let g:airline_theme='one'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled=1
@@ -454,11 +463,22 @@ augroup end
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>a  <Plug>(coc-codeaction)
 
-" Apply AutoFix to problem on the current line.
+" Remap keys for apply code actions at the cursor position.
+"nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer.
+"nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Remap keys for apply refactor code actions.
+" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
