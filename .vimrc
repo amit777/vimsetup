@@ -265,9 +265,12 @@ Plug 'Yilin-Yang/vim-markbar'
 Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
 Plug 'qpkorr/vim-renamer'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
+
+
+let g:one_allow_italics = 1
 
 let g:markbar_persist_mark_names = v:false
 
@@ -294,11 +297,12 @@ let g:prettier#autoformat_require_pragma = 0
 " https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
-    highlight CocHighlightText  ctermbg=17        guibg=#494949
-    highlight CursorLine   term=underline ctermbg=236 guibg=#2b2b2a
-    highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
-    highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
-    highlight CursorLineNr   term=bold ctermfg=81 guifg=#73cef4
+    "highlight CocHighlightText  ctermbg=17        guibg=#494949
+    "highlight CursorLine   term=underline ctermbg=236 guibg=#2b2b2a
+    "highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
+    "highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
+    "highlight CursorLineNr   term=bold ctermfg=81 guifg=#73cef4
+
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
