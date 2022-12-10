@@ -283,6 +283,9 @@ nmap <Leader>r <Plug>RenamerStart
 :command -nargs=* Q q <args> "lbha"
 :command -nargs=* Vsplit vsplit <args>
 :command -nargs=* Wq wq <args>
+:command -nargs=* Qa qa <args>
+
+
 :command -nargs=* Gbrowse GBrowse <args>
 :command -nargs=* Gblame G blame --abbrev=5 --date=relative <args>
 :command -nargs=* Blame G blame --abbrev=5 --date=relative <args>
