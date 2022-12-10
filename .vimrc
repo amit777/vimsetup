@@ -197,9 +197,9 @@ let g:move_key_modifier = 'C'
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
 if g:os != "Linux"
-  Plug 'rhysd/clever-f.vim'
-  Plug 'semanser/vim-outdated-plugins'
+  "Plug 'semanser/vim-outdated-plugins'
 endif
+Plug 'rhysd/clever-f.vim'
 "Plug 'dstein64/vim-startuptime'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
