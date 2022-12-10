@@ -317,8 +317,8 @@ set t_Co=256
 set background=dark
 "colorscheme janah
 colorscheme one
-"let g:airline_theme='solarized'
-let g:airline_theme='one'
+let g:airline_theme='bubblegum'
+"let g:airline_theme='one'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled=1
