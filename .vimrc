@@ -18,6 +18,7 @@ set expandtab
 set cursorline
 set visualbell
 set noerrorbells
+set showtabline=2
 "set clipboard=unnamed
 " this use to be vnoremap to *. doesn't work on linux with xclip
 vnoremap Y "+y 
@@ -36,6 +37,7 @@ set guifont=DroidSansMono\ Nerd\ Font:h14
 " this options makes flickering happen in macvim
 " use :!sh instead of :sh
 "set guioptions+=! 
+set guioptions-=e
 let g:csv_start = 1
 let g:csv_end = 100
 
@@ -178,6 +180,54 @@ let g:SignatureMap = {
 
 let g:tagalong_additional_filetypes = ['svelte']
 
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex' ],
+      \             ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings'], ['coc_status']
+      \           ]
+      \ },
+      \ 'tabline': {
+      \   'left': [ ['buffers'] ],
+      \   'right': [ ['close'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%B'
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ }
+      \ }
+
+let g:lightline#bufferline#show_number = 2
+
+let g:lightline#bufferline#ordinal_number_map = {
+\ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
+\ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+
+let g:lightline#bufferline#enable_devicons = 1
+
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
+nmap <Tab>   <Plug>lightline#bufferline#go_next()
+nmap <S-Tab> <Plug>lightline#bufferline#go_previous()
+
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key = '\'
 autocmd FileType html,css,svelte EmmetInstall
@@ -192,8 +242,8 @@ endif
 
 "let g:closetag_xhtml_filetypes = 'xhtml,jsx,svelte'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
-let g:move_key_modifier = 'C'
 
+let g:move_key_modifier = 'C'
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
 if g:os != "Linux"
@@ -226,11 +276,12 @@ Plug 'tpope/vim-fugitive' " git integration
 "Plug 'tpope/vim-rhubarb' " gbrowse
 "Plug 'ap/vim-css-color' " replaced by coc-highlight
 "Plug 'preservim/nerdtree' " file explorer. replaced by coc-explorer
-"Plug 'sheerun/vim-polyglot' " syntax detection.  do not use. it slows everything
 Plug 'wellle/targets.vim' " more text objects 
-Plug 'vim-airline/vim-airline' " pretty statusline and tabline
-Plug 'vim-airline/vim-airline-themes' 
+"Plug 'vim-airline/vim-airline' " pretty statusline and tabline
+"Plug 'sheerun/vim-polyglot' " syntax detection.  do not use. it slows everything
+"Plug 'vim-airline/vim-airline-themes' 
 Plug 'ryanoasis/vim-devicons' " show icons in coc-explorer
+Plug 'itchyny/lightline.vim'
 "Plug 'tpope/vim-obsession'  " replaced by startify sessions
 " Track the engine.
 "Plug 'SirVer/ultisnips'
@@ -244,7 +295,7 @@ Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chm
 "Plug 'tpope/vim-dadbod' " database manipulation"
 "Plug 'kristijanhusak/vim-dadbod-ui'
 " brew install pyenv (mac m1 processessor requires some latest and greatest
-" stuff
+" stuf`f
 " pyenv install 3.9.2
 " pyenv global 3.9.2
 " nvm install v15.12.0
@@ -267,9 +318,12 @@ Plug 'alvan/vim-closetag'
 Plug 'qpkorr/vim-renamer'
 Plug 'rakr/vim-one'
 Plug 'voldikss/vim-floaterm'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'josa42/vim-lightline-coc'
 call plug#end()
 
 
+call lightline#coc#register()
 let g:one_allow_italics = 1
 
 let g:markbar_persist_mark_names = v:false
@@ -320,23 +374,23 @@ set t_Co=256
 set background=dark
 "colorscheme janah
 colorscheme one
-let g:airline_theme='bubblegum'
+"let g:airline_theme='bubblegum'
 "let g:airline_theme='one'
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-"let g:airline#extensions#tabline#formatter = 'tabnr'
-"let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
-let g:airline_powerline_fonts = 1
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#branch#enabled=1
+" let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline#extensions#tabline#tab_nr_type = 1
+" let g:airline#extensions#tabline#show_splits = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 0
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" "let g:airline#extensions#tabline#formatter = 'tabnr'
+" let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+" let g:airline_powerline_fonts = 1
+" "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
 " for making sure indent works fine with svelte
 "let g:svelte_indent_script = 0
@@ -630,9 +684,9 @@ function! s:exec_cur_dir(cmd)
   execute a:cmd
 endfunction
 
-let g:airline_filetype_overrides = {
-     \ 'coc-explorer':  [ 'File Explorer', '' ],
-  \ }
+" let g:airline_filetype_overrides = {
+"      \ 'coc-explorer':  [ 'File Explorer', '' ],
+"   \ }
 
 
 " Use preset argument to open it
@@ -650,15 +704,15 @@ set sessionoptions=curdir,folds,help,slash,tabpages,unix
 
 " buffer navigation to specific tabs
 " use nmap instead of nnoremap
-nmap <Leader>1 <Plug>AirlineSelectTab1
-nmap <Leader>2 <Plug>AirlineSelectTab2
-nmap <Leader>3 <Plug>AirlineSelectTab3
-nmap <Leader>4 <Plug>AirlineSelectTab4 
-nmap <Leader>5 <Plug>AirlineSelectTab5
-nmap <Leader>6 <Plug>AirlineSelectTab6
-nmap <Leader>7 <Plug>AirlineSelectTab7
-nmap <Leader>8 <Plug>AirlineSelectTab8
-nmap <Leader>9 <Plug>AirlineSelectTab9
+" nmap <Leader>1 <Plug>AirlineSelectTab1
+" nmap <Leader>2 <Plug>AirlineSelectTab2
+" nmap <Leader>3 <Plug>AirlineSelectTab3
+" nmap <Leader>4 <Plug>AirlineSelectTab4 
+" nmap <Leader>5 <Plug>AirlineSelectTab5
+" nmap <Leader>6 <Plug>AirlineSelectTab6
+" nmap <Leader>7 <Plug>AirlineSelectTab7
+" nmap <Leader>8 <Plug>AirlineSelectTab8
+" nmap <Leader>9 <Plug>AirlineSelectTab9
 
 
 
