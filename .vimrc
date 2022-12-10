@@ -69,7 +69,7 @@ let g:startify_custom_footer = [
                   \ ':!tidy -mi -html -wrap 0 % -- fixes html from one line'
                   \]
 
-let g:markbar_num_lines_context = { 'around_local': 1, 'around_file': 1, 'peekaboo_around_local': 1, 'peekaboo_around_file': 1 }
+"let g:markbar_num_lines_context = { 'around_local': 1, 'around_file': 1, 'peekaboo_around_local': 1, 'peekaboo_around_file': 1 }
 " ditto, but more granularly (any may be omitted)
 " make windows equal size after split
 
@@ -243,6 +243,8 @@ endif
 "let g:closetag_xhtml_filetypes = 'xhtml,jsx,svelte'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 
+let g:peekaboo_window="vert bo 50new"
+
 let g:move_key_modifier = 'C'
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
@@ -296,11 +298,11 @@ Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chm
 "Plug 'kristijanhusak/vim-dadbod-ui'
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuf`f
+"Plug 'puremourning/vimspector' " for debugger. F5 launches it
 " pyenv install 3.9.2
 " pyenv global 3.9.2
 " nvm install v15.12.0
 " brew install vim -vd protobuf
-"Plug 'puremourning/vimspector' " for debugger. F5 launches it
 "Plug 'skanehira/docker.vim' 
 Plug 'junegunn/vim-peekaboo'  
 "Plug 'will133/vim-dirdiff'
@@ -312,7 +314,7 @@ Plug 'glts/vim-radical'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-characterize'
 Plug 'diepm/vim-rest-console'
-Plug 'Yilin-Yang/vim-markbar'
+"Plug 'Yilin-Yang/vim-markbar'
 Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
 Plug 'qpkorr/vim-renamer'
@@ -326,7 +328,7 @@ call plug#end()
 call lightline#coc#register()
 let g:one_allow_italics = 1
 
-let g:markbar_persist_mark_names = v:false
+"let g:markbar_persist_mark_names = v:false
 
 " renamer shows warning about this variable.  but can't seem to define it
 "let b:RenamerShowHiddenEnabled = v:true
