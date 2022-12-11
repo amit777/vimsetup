@@ -357,7 +357,7 @@ let g:prettier#autoformat_require_pragma = 0
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
     "highlight CocHighlightText  ctermbg=17        guibg=#494949
-    "highlight CursorLine   term=underline ctermbg=236 guibg=#2b2b2a
+    highlight CursorLine   term=underline ctermbg=16 guibg=#282b30
     "highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     "highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
     "highlight CursorLineNr   term=bold ctermfg=81 guifg=#73cef4
