@@ -251,7 +251,8 @@ let g:move_key_modifier = 'C'
 "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 let g:clever_f_mark_direct = 1
-let g:clever_f_mark_char_color = 'CleverFChar'
+" this doesn't work to change color
+" let g:clever_f_mark_char_color = 'CocLink'
 
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
@@ -364,17 +365,13 @@ let g:prettier#autoformat_require_pragma = 0
 " https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
+
     "highlight CocHighlightText  ctermbg=17        guibg=#494949
     highlight CursorLine   term=underline ctermbg=16 guibg=#282b30
     "highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
     "highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
     "highlight CursorLineNr   term=bold ctermfg=81 guifg=#73cef4
 
-    "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
-    "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
-    "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
-    " for the quick-scope plugin 
-    highlight link CleverFChar CocLink
 endfunction
 
 augroup MyColors
