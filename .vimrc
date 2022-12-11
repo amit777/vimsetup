@@ -1,3 +1,14 @@
+if exists('g:vscode')
+" VSCode extension
+call plug#begin('~/.vim/plugged')
+Plug 'tomtom/tcomment_vim'  " the best code commenting tool. gcc toggles
+Plug 'AndrewRadev/dsf.vim' " delete surrouning function. note used
+Plug 'tpope/vim-fugitive' " git integration
+Plug 'tpope/vim-repeat' " makes the dot repeat smarter
+Plug 'junegunn/vim-peekaboo'  
+Plug 'rhysd/clever-f.vim'
+call plug#end()
+else
 syntax on
 set nofoldenable
 set hlsearch
@@ -260,6 +271,8 @@ if g:os != "Linux"
   "Plug 'semanser/vim-outdated-plugins'
 endif
 "Plug 'dstein64/vim-startuptime'
+
+
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
 Plug 'simeji/winresizer'
@@ -923,3 +936,4 @@ au BufNewFile,BufRead */etc/hosts		setf hostconf
 "   let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
 "   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 " endfunction
+endif
