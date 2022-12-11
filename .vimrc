@@ -246,12 +246,18 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 let g:peekaboo_window="vert bo 50new"
 
 let g:move_key_modifier = 'C'
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+"let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+let g:clever_f_mark_direct = 1
+let g:clever_f_mark_char_color = 'CleverFChar'
+
 call plug#begin('~/.vim/plugged')
 "Plug 'chrisbra/csv.vim' " uncomment to enable csv stuff
 if g:os != "Linux"
   "Plug 'semanser/vim-outdated-plugins'
 endif
-Plug 'rhysd/clever-f.vim'
 "Plug 'dstein64/vim-startuptime'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
@@ -315,13 +321,15 @@ Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-characterize'
 Plug 'diepm/vim-rest-console'
 "Plug 'Yilin-Yang/vim-markbar'
-Plug 'vimwiki/vimwiki'
 Plug 'alvan/vim-closetag'
+Plug 'vimwiki/vimwiki'
 Plug 'qpkorr/vim-renamer'
 Plug 'rakr/vim-one'
 Plug 'voldikss/vim-floaterm'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'josa42/vim-lightline-coc'
+"Plug 'unblevable/quick-scope' " replacement for clever-f
+Plug 'rhysd/clever-f.vim'
 call plug#end()
 
 
@@ -365,6 +373,8 @@ function! MyHighlights() abort
     "highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  ui=NONE guibg=#5fd700 guifg=#000000
     "highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     "highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+    " for the quick-scope plugin 
+    highlight link CleverFChar CocLink
 endfunction
 
 augroup MyColors
@@ -904,6 +914,7 @@ augroup NO_CURSOR_MOVE_ON_FOCUS
 augroup END
 
 au BufNewFile,BufRead */etc/hosts		setf hostconf
+
 
 
 " augroup fzf_preview
