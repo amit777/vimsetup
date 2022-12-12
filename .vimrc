@@ -1,5 +1,6 @@
 if exists('g:vscode')
 " VSCode extension
+let g:clever_f_mark_direct = 1
 call plug#begin('~/.vim/plugged')
 Plug 'tomtom/tcomment_vim'  " the best code commenting tool. gcc toggles
 Plug 'AndrewRadev/dsf.vim' " delete surrouning function. note used
@@ -8,6 +9,15 @@ Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'junegunn/vim-peekaboo'  
 Plug 'rhysd/clever-f.vim'
 call plug#end()
+"nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+"https://code.visualstudio.com/docs/getstarted/keybindings
+set updatetime=300
+set hlsearch
+set incsearch
+set wildmode=longest,full " bash-like tab complete"
+nnoremap <Leader>qf <Cmd>call VSCodeCall('editor.action.quickFix')<CR>
+autocmd CursorHold * silent call VSCodeCall('editor.action.showHover')<CR> 
+
 else
 syntax on
 set nofoldenable
