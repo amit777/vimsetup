@@ -1,6 +1,11 @@
 if exists('g:vscode')
 " VSCode extension
+set updatetime=300
+set hlsearch
+set incsearch
+set wildmode=longest,full " bash-like tab complete"
 let g:clever_f_mark_direct = 1
+
 call plug#begin('~/.vim/plugged')
 Plug 'tomtom/tcomment_vim'  " the best code commenting tool. gcc toggles
 Plug 'AndrewRadev/dsf.vim' " delete surrouning function. note used
@@ -9,14 +14,11 @@ Plug 'tpope/vim-repeat' " makes the dot repeat smarter
 Plug 'junegunn/vim-peekaboo'  
 Plug 'rhysd/clever-f.vim'
 call plug#end()
+
 "nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
 "https://code.visualstudio.com/docs/getstarted/keybindings
-set updatetime=300
-set hlsearch
-set incsearch
-set wildmode=longest,full " bash-like tab complete"
-nnoremap <Leader>qf <Cmd>call VSCodeCall('editor.action.quickFix')<CR>
-autocmd CursorHold * silent call VSCodeCall('editor.action.showHover')<CR> 
+nnoremap <Leader>qf <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+"autocmd CursorHold * silent call VSCodeNotify('editor.action.showHover')<CR> 
 
 else
 syntax on
@@ -65,7 +67,7 @@ let g:csv_end = 100
 let g:vimwiki_list = [{'path': '~/.vimwiki/'}]
 
 let g:startify_custom_header = [
-                  \'ctrl+e+(jkli) winresize | ctr+d open/close shell | gcc gc gcap - comment line, motion, paragraph ',
+                  \'ctrl+e+(jkli) winresize | ctr+d open/close shell | gcc gc gcap - comment line, motion, paragraph | %!jq format_json ',
                   \'\e \f \F \s \h \b - explore :GFiles :Files :GitGrep :History :Buffer (c+x/v) split',
                   \'c-o+p c+r" - paste from insert mode. | <C-6> switch to prev edited buffer | :ls list buffers | :b<num or partialname> switch buff',
                   \'dsf, dif - del surr func | daa da, - del argument, comma param | X - del char left | q: - explore old commands | \wt \wd \ws vimwiki | +p or <c+r>+ - paste system clipboard | ctrl+a - inc number | visual g<c+a> increment list |  ciw - change inner word |  zz/zt/zb - recenter middle/top/bottom',
@@ -935,6 +937,8 @@ augroup END
 
 au BufNewFile,BufRead */etc/hosts		setf hostconf
 
+" format JSON
+command! -range FormatJson <line1>,<line2>!xargs -0 -I {} node -e 'console.log(JSON.stringify({}, null, 2));'
 
 
 " augroup fzf_preview

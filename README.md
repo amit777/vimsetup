@@ -7,6 +7,9 @@ brew install --cask xquartz
 
 ```
 
+# zsh stuff
+# add `.zprofile` to ~.  set NVM and Pyenv paths here so that MacVim can pick them up. 
+
 # font stuff
 ```
 # preferred:

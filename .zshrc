@@ -150,11 +150,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-fi
 
 alias knownhosts="vi ~/.ssh/known_hosts"
 alias di="docker images"
