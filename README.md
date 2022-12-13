@@ -13,7 +13,9 @@ brew install --cask xquartz
 # font stuff
 ```
 # preferred:
-DroidSansMono Nerd Font
+download from https://www.nerdfonts.com/font-downloads
+DejaVuSansMono\ Nerd\ Font\ Mono:h14
+
 
 # this may not work. may just download from nerdfonts.com
 brew tap homebrew/cask-fonts

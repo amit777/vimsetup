@@ -33,6 +33,8 @@ set wildmode=longest,full " bash-like tab complete"
 set wildmenu " display command tab commplete as menu"
 "set linebreak
 set foldmethod=syntax
+"set foldmethod=indent
+noremap <space><space> za
 filetype plugin indent on
 set smartindent
 set tabstop=2
@@ -55,7 +57,9 @@ set number
 "set list - this will show the spaces etc
 set lcs+=space:·,eol:⏎
 
-set guifont=DroidSansMono\ Nerd\ Font:h14
+" download from https://www.nerdfonts.com/font-downloads
+"set guifont=DroidSansMono\ Nerd\ Font:h14
+set guifont=DejaVuSansMono\ Nerd\ Font\ Mono:h14
 "set guifont=FantasqueSansMono\ Nerd\ Font:h16
 " this options makes flickering happen in macvim
 " use :!sh instead of :sh
@@ -161,8 +165,6 @@ vmap D y'>p
 " 
 " F5 - start debugger.
 " ,di  - put cursor over variable and shows value
-noremap <space><space> za
-"set foldmethod=indent
 " make space bar fold and unfold
 
 let g:startify_session_persistence = 0
@@ -330,7 +332,7 @@ Plug 'tpope/vim-eunuch' " :SudoWrite :Rename, :Move, :Unlink :Delete :Mkdir :Chm
 "Plug 'kristijanhusak/vim-dadbod-ui'
 " brew install pyenv (mac m1 processessor requires some latest and greatest
 " stuf`f
-"Plug 'puremourning/vimspector' " for debugger. F5 launches it
+Plug 'puremourning/vimspector' " for debugger. F5 launches it
 " pyenv install 3.9.2
 " pyenv global 3.9.2
 " nvm install v15.12.0
@@ -351,6 +353,7 @@ Plug 'alvan/vim-closetag'
 Plug 'vimwiki/vimwiki'
 Plug 'qpkorr/vim-renamer'
 Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'josa42/vim-lightline-coc'
@@ -391,11 +394,10 @@ let g:prettier#autoformat_require_pragma = 0
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
 
-    "highlight CocHighlightText  ctermbg=17        guibg=#494949
     highlight CursorLine   term=underline ctermbg=16 guibg=#282b30
-    "highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
-    "highlight Normal       ctermfg=253 guifg=#dadada guibg=#262626
-    "highlight CursorLineNr   term=bold ctermfg=81 guifg=#73cef4
+    highlight Todo         ctermfg=Red guifg=#CC0000
+
+    "highlight Comment term=bold cterm=italic ctermfg=59 ctermbg=16 gui=italic guifg=#5c6370 
 
 endfunction
 
@@ -407,7 +409,8 @@ augroup END
 set t_Co=256
 set background=dark
 "colorscheme janah
-colorscheme one
+colorscheme onedark
+"colorscheme one
 "let g:airline_theme='bubblegum'
 "let g:airline_theme='one'
 
@@ -659,47 +662,55 @@ nnoremap <silent> <leader>g :CocDiagnostics<CR>
 " variable completion
 let g:UltiSnipsExpandTrigger="<C-l>"
 
-"
-" " setup vimspector
-" " :VimspectorUpdate to update gadgets
-" let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
-" " https://github.com/puremourning/vimspector#human-mode see key bindings
-" let g:vimspector_enable_mappings='HUMAN'
-" " customize the UI to add Fkeys
-" function! s:CustomiseWinBar()
-"   call win_gotoid( g:vimspector_session_windows.code )
-"   " Clear the existing WinBar created by Vimspector
-"   nunmenu WinBar
-"   nnoremenu WinBar.■\ Stop\(F3\) :call vimspector#Stop( { 'interactive': v:false } )<CR>
-"   nnoremenu WinBar.▶\ Cont\(F5\) :call vimspector#Continue()<CR>
-"   nnoremenu WinBar.▷\ Pause\(F6\) :call vimspector#Pause()<CR>
-"   nnoremenu WinBar.↷\ Next\(F10\) :call vimspector#StepOver()<CR>
-"   nnoremenu WinBar.→\ Step\(F11\) :call vimspector#StepInto()<CR>
-"   nnoremenu WinBar.←\ Out\(F12\) :call vimspector#StepOut()<CR>
-"   nnoremenu WinBar.⟲:\(F4\) :call vimspector#Restart()<CR>
-"   nnoremenu WinBar.✕ :call vimspector#Reset( { 'interactive': v:false } )<CR>
-"   " Cretae our own WinBar
-" endfunction
-"
-" augroup MyVimspectorUICustomistaion
-"   autocmd!
-"   autocmd User VimspectorUICreated call s:CustomiseWinBar()
-" augroup END
-"
-" set noequalalways
-" let mapleader = '\' "this was comma by default.  changing back to \
-" let maplocalleader = ","  " this was \<Space>.  changing to ,
-" let &runtimepath = &runtimepath . ',' . g:vimspector_test_plugin_path
-"
-" " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-" " for normal mode - the word under the cursor
-" nmap <Leader>di <Plug>VimspectorBalloonEval
-" " for visual mode, the visually selected text
-" xmap <Leader>di <Plug>VimspectorBalloonEval
-"
-" "You may also wish to add mappings for up/down the stack, for example:
-" nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
-" nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+
+" setup vimspector
+" :VimspectorUpdate to update gadgets
+let g:vimspector_test_plugin_path = expand( '<sfile>:p:h:h' )
+" https://github.com/puremourning/vimspector#human-mode see key bindings
+let g:vimspector_enable_mappings='HUMAN'
+" customize the UI to add Fkeys
+function! s:CustomiseWinBar()
+  call win_gotoid( g:vimspector_session_windows.code )
+  " Clear the existing WinBar created by Vimspector
+  nunmenu WinBar
+  nnoremenu WinBar.■\ Stop\(F3\) :call vimspector#Stop( { 'interactive': v:false } )<CR>
+  nnoremenu WinBar.▶\ Cont\(F5\) :call vimspector#Continue()<CR>
+  nnoremenu WinBar.▷\ Pause\(F6\) :call vimspector#Pause()<CR>
+  nnoremenu WinBar.↷\ Next\(F10\) :call vimspector#StepOver()<CR>
+  nnoremenu WinBar.→\ Step\(F11\) :call vimspector#StepInto()<CR>
+  nnoremenu WinBar.←\ Out\(F12\) :call vimspector#StepOut()<CR>
+  nnoremenu WinBar.⟲:\(F4\) :call vimspector#Restart()<CR>
+  nnoremenu WinBar.✕ :call vimspector#Reset( { 'interactive': v:false } )<CR>
+  " Cretae our own WinBar
+endfunction
+
+augroup MyVimspectorUICustomistaion
+  autocmd!
+  autocmd User VimspectorUICreated call s:CustomiseWinBar()
+augroup END
+
+set noequalalways
+let mapleader = '\' "this was comma by default.  changing back to \
+let maplocalleader = ","  " this was \<Space>.  changing to ,
+let &runtimepath = &runtimepath . ',' . g:vimspector_test_plugin_path
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
+
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+
+nmap <Leader>dk <Plug>VimspectorRestart
+nmap <Leader>dh <Plug>VimspectorStepOut
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
 
 " add tcomment_vim for svelte
 let g:tcomment#filetype#guess_svelte = 'html'
@@ -747,20 +758,6 @@ set sessionoptions=curdir,folds,help,slash,tabpages,unix
 " nmap <Leader>7 <Plug>AirlineSelectTab7
 " nmap <Leader>8 <Plug>AirlineSelectTab8
 " nmap <Leader>9 <Plug>AirlineSelectTab9
-
-
-
-" Tab navigation to specific tabs
-nnoremap <Leader>t1 1gt
-nnoremap <Leader>t2 2gt
-nnoremap <Leader>t3 3gt
-nnoremap <Leader>t4 4gt
-nnoremap <Leader>t5 5gt
-nnoremap <Leader>t6 6gt
-nnoremap <Leader>t7 7gt
-nnoremap <Leader>t8 8gt
-nnoremap <Leader>t9 9gt
-
 
 " make it easy to edit vimrc file
 :nnoremap <leader>ve :vsplit $MYVIMRC<CR>
