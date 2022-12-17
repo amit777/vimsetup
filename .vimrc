@@ -206,7 +206,7 @@ let g:SignatureMap = {
 let g:tagalong_additional_filetypes = ['svelte']
 
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'Tomorrow_Night_Blue',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex' ],
@@ -395,7 +395,7 @@ let g:prettier#autoformat_require_pragma = 0
 function! MyHighlights() abort
 
     highlight CursorLine   term=underline ctermbg=16 guibg=#282b30
-    highlight Todo         ctermfg=Red guifg=#CC0000
+    highlight Todo         ctermfg=DarkYellow guifg=DarkYellow
 
     "highlight Comment term=bold cterm=italic ctermfg=59 ctermbg=16 gui=italic guifg=#5c6370 
 
