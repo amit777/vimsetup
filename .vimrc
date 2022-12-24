@@ -1,3 +1,7 @@
+" clear search if you hit enter
+"nnoremap <silent> <CR> :nohlsearch<CR><CR>
+nnoremap <nowait><silent> <C-C> :noh<CR>
+
 if exists('g:vscode')
 " VSCode extension
 set updatetime=300
@@ -59,7 +63,8 @@ set lcs+=space:·,eol:⏎
 
 " download from https://www.nerdfonts.com/font-downloads
 "set guifont=DroidSansMono\ Nerd\ Font:h14
-set guifont=DejaVuSansMono\ Nerd\ Font\ Mono:h14
+"set guifont=DejaVuSansMono\ Nerd\ Font\ Mono:h14
+set guifont=MesloLGS\ NF:h13
 "set guifont=FantasqueSansMono\ Nerd\ Font:h16
 " this options makes flickering happen in macvim
 " use :!sh instead of :sh
@@ -206,7 +211,7 @@ let g:SignatureMap = {
 let g:tagalong_additional_filetypes = ['svelte']
 
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night_Blue',
+      \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex' ],
@@ -286,6 +291,9 @@ if g:os != "Linux"
 endif
 "Plug 'dstein64/vim-startuptime'
 
+"Plug 'cormacrelf/vim-colors-github'
+Plug 'pangloss/vim-javascript'
+Plug 'liuchengxu/vim-which-key'
 
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'amit777/srcery-vim'
@@ -359,8 +367,12 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'josa42/vim-lightline-coc'
 "Plug 'unblevable/quick-scope' " replacement for clever-f
 Plug 'rhysd/clever-f.vim'
+Plug 'ruanyl/vim-gh-line'
 call plug#end()
 
+
+" set whichkey
+nnoremap <silent> <leader> :WhichKey '\'<CR>
 
 call lightline#coc#register()
 let g:one_allow_italics = 1
@@ -394,8 +406,13 @@ let g:prettier#autoformat_require_pragma = 0
 " :hi Search  - gets the highlight setting
 function! MyHighlights() abort
 
-    highlight CursorLine   term=underline ctermbg=16 guibg=#282b30
-    highlight Todo         ctermfg=DarkYellow guifg=DarkYellow
+    " this works with one theme
+    " highlight CursorLine   term=underline ctermbg=16 guibg=#282b30
+
+    " this works with janah
+    highlight CursorLine   term=underline ctermbg=236 guibg=#242425
+    highlight Search       term=reverse ctermfg=7 ctermbg=161 guifg=#fafaff guibg=#70002f
+    highlight Todo         ctermfg=DarkRed guifg=DarkRed
 
     "highlight Comment term=bold cterm=italic ctermfg=59 ctermbg=16 gui=italic guifg=#5c6370 
 
@@ -408,8 +425,8 @@ augroup END
 
 set t_Co=256
 set background=dark
-"colorscheme janah
-colorscheme onedark
+colorscheme janah
+"colorscheme onedark
 "colorscheme one
 "let g:airline_theme='bubblegum'
 "let g:airline_theme='one'
