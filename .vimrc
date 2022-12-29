@@ -368,6 +368,7 @@ Plug 'josa42/vim-lightline-coc'
 "Plug 'unblevable/quick-scope' " replacement for clever-f
 Plug 'rhysd/clever-f.vim'
 Plug 'ruanyl/vim-gh-line'
+Plug 'github/copilot.vim'
 call plug#end()
 
 
@@ -428,27 +429,6 @@ set background=dark
 colorscheme janah
 "colorscheme onedark
 "colorscheme one
-"let g:airline_theme='bubblegum'
-"let g:airline_theme='one'
-
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#branch#enabled=1
-" let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
-" let g:airline#extensions#tabline#show_tab_nr = 1
-" let g:airline#extensions#tabline#tab_nr_type = 1
-" let g:airline#extensions#tabline#show_splits = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 0
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-" "let g:airline#extensions#tabline#formatter = 'tabnr'
-" let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
-" let g:airline_powerline_fonts = 1
-" "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-
-" for making sure indent works fine with svelte
-"let g:svelte_indent_script = 0
-"let g:svelte_indent_style = 0
 
 " install coc extensions instead of using :CocInstall on each one
 let g:coc_global_extensions = [
@@ -888,7 +868,9 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
-nnoremap <Leader>c :call SynGroup()<cr>
+nnoremap <Leader>sg :call SynGroup()<cr>
+
+nnoremap <Leader>c :Copilot<cr>
 " temporarily disable search highlighting 
 nnoremap <CR> :noh<CR><CR>
 
