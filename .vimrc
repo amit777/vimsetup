@@ -348,6 +348,7 @@ Plug 'puremourning/vimspector' " for debugger. F5 launches it
 "Plug 'skanehira/docker.vim' 
 Plug 'junegunn/vim-peekaboo'  
 "Plug 'will133/vim-dirdiff'
+Plug 'tmhedberg/matchit'
 Plug 'leafOfTree/vim-svelte-plugin' " this seems better at js indent than evanleck/vim-svelte html indent sucks
 Plug 't9md/vim-choosewin'
 "Plug 'junegunn/gv.vim'
