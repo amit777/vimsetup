@@ -948,3 +948,30 @@ command! -range FormatJson <line1>,<line2>!xargs -0 -I {} node -e 'console.log(J
 "   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 " endfunction
 endif
+
+function! ToggleDescribeItOnly()
+    " Get the current line
+    let l:line = getline('.')
+
+    " Define the pattern for 'describe' or 'it' with or without '.only'
+    let l:pattern = '\v(describe|it)(\.only)?\('
+
+    " Check if the current line matches the pattern for 'describe' or 'it'
+    if l:line =~ l:pattern
+        " Check if '.only' is present after 'describe' or 'it'
+        if l:line =~ '\v(describe|it)\.only\('
+            " Remove '.only'
+            let l:line = substitute(l:line, '\v(describe|it)\.only\(', '\1(', '')
+        else
+            " Add '.only'
+            let l:line = substitute(l:line, '\v(describe|it)\(', '\1.only(', '')
+        endif
+
+        " Set the modified line
+        call setline('.', l:line)
+    endif
+endfunction
+
+" Bind the function to a key, e.g., <F3>
+nnoremap <Leader>o :call ToggleDescribeItOnly()<CR>
+
