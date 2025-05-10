@@ -4,8 +4,21 @@ My Persoal Vim setup & notes
 # x11 stuff
 ```
 brew install --cask xquartz
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ```
+
+
+# setup symlinks to .vimrc and coc-settings.json
+```
+mkdir git
+cd git
+git clone git://github.com/amit777/vimsetup
+ln -s ~/git/vimsetup/.vimrc ~/.vimrc
+ln -s ~/git/vimsetup/coc-settings.json ~/.vim/coc-settings.json
+```
+
 
 # zsh stuff
 # add `.zprofile` to ~.  set NVM and Pyenv paths here so that MacVim can pick them up. 
@@ -182,9 +195,3 @@ This is for permissions
 
 # MAC env setup
 brew install bash-completion
-
-# setup symlinks to .vimrc and coc-settings.json
-```
-ln -s ~/git/vimsetup/.vimrc ~/.vimrc
-ln -s ~/git/vimsetup/coc-settings.json ~/.vim/coc-settings.json
-```
